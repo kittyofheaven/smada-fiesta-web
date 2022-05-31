@@ -8,6 +8,10 @@ from typing import List
 from link_generator import link_generator, used_number_delete
 
 
+### TODO LIST ###
+# buat link yg dikirim ke pengguna itu jadi dalam bentuk yang pasti
+# html buat email
+# integrasi html email ke app fastapi
 
 app = FastAPI()
 

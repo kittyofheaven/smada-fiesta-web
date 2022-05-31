@@ -33,7 +33,7 @@ conf = ConnectionConfig(
 async def send_email_async(subject: str, email_to: str, body: str):
     message = MessageSchema(
         subject=subject,
-        recipients=[email_to],
+        recipients=email_to,
         body=body,
         subtype='html',
     )

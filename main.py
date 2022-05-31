@@ -1,8 +1,12 @@
 import uvicorn
+import random
+import re
 from fastapi import FastAPI, BackgroundTasks
-from send_email import send_email_background
+from send_email import send_email_background, send_email_async
 from pydantic import BaseModel, EmailStr
 from typing import List
+from link_generator import link_generator, used_number_delete
+
 
 
 app = FastAPI()
@@ -19,19 +23,44 @@ def index():
 class EmailSchema(BaseModel):
     email: List[EmailStr]
 
-# @app.get('/send-email/asynchronous')
-# async def send_email_asynchronous():
-#     await send_email_async('Hello World','hazelhandrata@gmail.com',
-#     "halo")
+# @app.post('/send-email/asynchronous')
+# async def send_email_asynchronous(email: EmailSchema):
+#     link_exten = link_generator(email.dict().get("email")[0])
+#     await send_email_async('Hello World',email.dict().get("email"),
+#     link_exten)
 #     return 'Success'
+
+# def link_generator(email):
+#     email = email.lower()
+    
+#     rand_num = random.randint(1000000, 9999999)
+
+verif_list = [] # list email yg belum verifikasi
 
 @app.post('/send-email') # ini send email background
 def send_email_backgroundtasks(background_tasks: BackgroundTasks, email: EmailSchema):
-    send_email_background(background_tasks, 'Hello World',  # disini title 
-    email.dict().get("email"), 'halo') # disini body
+    
+    link_exten = link_generator(email.dict().get("email")[0])
+    verif_list.append(link_exten)
 
+    send_email_background(background_tasks, 'Hello World',  # disini title 
+    email.dict().get("email"), link_exten) # disini body
+
+    # print(verif_list)
+    # print(link_exten)
+    # print(type(email.dict().get("email")[0]))
     # print(email.dict().get("email"))
     return 'Success'
+
+@app.post('/verification')
+async def verification(otp : str):
+    if otp in verif_list:
+        verif_list.remove(otp)
+        used_number_delete(int(otp[3:]))
+        return {'status' : 'Success'}
+    else:
+        return {'status' : 'Failed'}
+
 
 if __name__ == '__main__':
     uvicorn.run('main:app', reload=True)

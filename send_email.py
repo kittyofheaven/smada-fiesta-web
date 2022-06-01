@@ -33,7 +33,7 @@ conf = ConnectionConfig(
 async def send_email_async(subject: str, email_to: str, body: str):
     message = MessageSchema(
         subject=subject,
-        recipients=email_to,
+        recipients=[email_to],
         body=body,
         subtype='html',
     )
@@ -46,7 +46,7 @@ async def send_email_async(subject: str, email_to: str, body: str):
 def send_email_background(background_tasks: BackgroundTasks, subject: str, email_to: list, body: str):
     message = MessageSchema(
         subject=subject,
-        recipients=email_to,
+        recipients=[email_to],
         body=body,
         subtype='html',
     )

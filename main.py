@@ -7,11 +7,13 @@ from pydantic import BaseModel, EmailStr
 from typing import List
 from link_generator import link_generator, used_number_delete
 
+from database import bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
 
 ### TODO LIST ###
 # buat link yg dikirim ke pengguna itu jadi dalam bentuk yang pasti
 # html buat email
 # integrasi html email ke app fastapi
+# mekanisme voting
 
 app = FastAPI()
 
@@ -24,8 +26,9 @@ def index():
 
 # EMAIL SECTION
 
-class EmailSchema(BaseModel):
-    email: List[EmailStr]
+class BandcompSchema(BaseModel):
+    email: EmailStr
+    who: str
 
 # @app.post('/send-email/asynchronous')
 # async def send_email_asynchronous(email: EmailSchema):
@@ -39,16 +42,17 @@ class EmailSchema(BaseModel):
     
 #     rand_num = random.randint(1000000, 9999999)
 
-verif_list = [] # list email yg belum verifikasi
+# verif_list = [] # list email yg belum verifikasi
 
-@app.post('/send-email') # ini send email background
-def send_email_backgroundtasks(background_tasks: BackgroundTasks, email: EmailSchema):
+@app.post('/bandcomp/send-email') # ini send email background
+def send_email_backgroundtasks(background_tasks: BackgroundTasks, bandcomp: BandcompSchema):
     
-    link_exten = link_generator(email.dict().get("email")[0])
-    verif_list.append(link_exten)
+    link_exten = link_generator(bandcomp.dict().get("email")) #link exten ini sama kayak otpnya
+    bandcomp_vote(bandcomp.dict().get("email"), link_exten, bandcomp.dict().get("who"))
+    # verif_list.append(link_exten)
 
     send_email_background(background_tasks, 'Hello World',  # disini title 
-    email.dict().get("email"), link_exten) # disini body
+    bandcomp.dict().get("email"), link_exten) # disini body
 
     # print(verif_list)
     # print(link_exten)
@@ -56,10 +60,10 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks, email: EmailSc
     # print(email.dict().get("email"))
     return 'Success'
 
-@app.post('/verification')
+@app.post('/bandcomp/verification')
 async def verification(otp : str):
-    if otp in verif_list:
-        verif_list.remove(otp)
+    if searh_bandcomp_otp(otp):
+        bandcomp_vote_verificated(otp)
         used_number_delete(int(otp[3:]))
         return {'status' : 'Success'}
     else:

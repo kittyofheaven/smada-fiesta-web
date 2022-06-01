@@ -34,6 +34,8 @@ def searh_bandcomp_otp(otp):
 def bandcomp_vote_verificated(otp):
     """search for otp and if found set is_verificated to True"""
     bandcomp_vote_db.update_one({"otp": otp}, {"$set": {"is_verificated": True}})
+    
+    
 
 # bandcomp_vote("hazelhandrata@gmail.com", "2234567", "SBB")
 # print(searh_otp("123123"))

@@ -3,9 +3,9 @@ import random
 used_number_link = []
 
 def used_number_delete(number):
-    # print(used_number_link)
+    print(used_number_link)
     used_number_link.remove(number)
-    # print(used_number_link)
+    print(used_number_link)
 
 def randint_wo_duplicate():   
     rand_num = random.randint(1000000, 9999999)

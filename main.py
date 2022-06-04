@@ -60,15 +60,14 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks, bandcomp: Band
     # print(email.dict().get("email"))
     return 'Success'
 
-@app.post('/bandcomp/verification')
+@app.get('/bandcomp/verification')
 async def verification(otp : str):
     if searh_bandcomp_otp(otp):
         bandcomp_vote_verificated(otp)
         used_number_delete(int(otp[3:]))
-        return {'status' : 'Success'}
+        return {'status' : 'Success'    }
     else:
         return {'status' : 'Failed'}
-
 
 if __name__ == '__main__':
     uvicorn.run('main:app', reload=True)

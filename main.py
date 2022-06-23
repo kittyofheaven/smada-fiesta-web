@@ -51,7 +51,7 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks, bandcomp: Band
     bandcomp_vote(bandcomp.dict().get("email"), link_exten, bandcomp.dict().get("who"))
     # verif_list.append(link_exten)
 
-    send_email_background(background_tasks, 'Hello World',  # disini title 
+    send_email_background(background_tasks, 'Confirm vote for Bandcomp 2k22',  # disini title 
     bandcomp.dict().get("email"), link_exten) # disini body
 
     # print(verif_list)

@@ -2,7 +2,7 @@ import uvicorn
 import random
 import re
 from fastapi import FastAPI, BackgroundTasks
-from send_email import send_email_background, send_email_async
+from send_email import send_email_background, send_email
 from pydantic import BaseModel, EmailStr
 from typing import List
 from link_generator import link_generator, used_number_delete

@@ -7,7 +7,7 @@ from pydantic import BaseModel, EmailStr
 from typing import List
 from link_generator import link_generator, used_number_delete
 
-from database import bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
+from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
 
 ### TODO LIST ###
 # buat link yg dikirim ke pengguna itu jadi dalam bentuk yang pasti
@@ -47,6 +47,9 @@ class BandcompSchema(BaseModel):
 @app.post('/bandcomp/send-email') # ini send email background
 def send_email_backgroundtasks(background_tasks: BackgroundTasks, bandcomp: BandcompSchema):
     
+    if check_email(bandcomp.dict().get("email")):
+        return "Email already used please use another email"
+    
     link_exten = link_generator(bandcomp.dict().get("email")) #link exten ini sama kayak otpnya
     bandcomp_vote(bandcomp.dict().get("email"), link_exten, bandcomp.dict().get("who"))
     # verif_list.append(link_exten)
@@ -65,7 +68,10 @@ async def verification(otp : str):
     if searh_bandcomp_otp(otp):
         bandcomp_vote_verificated(otp)
         used_number_delete(int(otp[3:]))
-        return {'status' : 'Success'    }
+        return {'status' : 'Success'}
+
+    elif already_verificated(otp):
+        return {'status' : 'Already Verified'}
     else:
         return {'status' : 'Failed'}
 

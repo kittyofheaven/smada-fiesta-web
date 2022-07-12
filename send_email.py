@@ -1,11 +1,17 @@
 import os
+from re import template
 from fastapi import BackgroundTasks
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
+
+from jinja2 import Environment, FileSystemLoader
+file_loader = FileSystemLoader('templates')
+env = Environment(loader=file_loader)
 
 from dotenv import load_dotenv
 load_dotenv('.env')
 
 import smtplib
+from email.message import EmailMessage
 class Envs:
     MAIL_USERNAME = os.getenv('MAIL_USERNAME')
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
@@ -58,15 +64,22 @@ class Envs:
 
 
 def send_email(reciever, subject, body) :
-    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        smtp.ehlo()
-        smtp.starttls()
-        smtp.ehlo()
+
+    msg = EmailMessage()
+    msg['Subject'] = subject
+    msg['From'] = Envs.MAIL_FROM
+    msg['To'] = reciever
+    # msg.set_content(body)
+
+    template = env.get_template('email.html')
+    output = template.render(title = 'Confirmation', name = 'John Doe') 
+    # with open('templates\email.html', 'r') as f:
+        # msg.set_content(f.read())
+    msg.add_alternative(output, subtype='html')
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(Envs.MAIL_USERNAME, Envs.MAIL_PASSWORD)
-
-        msg = f'Subject:{subject}\n\n {body}'
-
-        smtp.sendmail(Envs.MAIL_USERNAME, reciever, msg)
+        smtp.send_message(msg)
 
 def send_email_background(background_tasks: BackgroundTasks, subject: str, reciever: str, body: str):
     background_tasks.add_task(send_email, reciever, subject, body)

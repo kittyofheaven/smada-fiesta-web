@@ -1,10 +1,7 @@
 import uvicorn
-import random
-import re
-from fastapi import FastAPI, BackgroundTasks
-from send_email import send_email_background, send_email
+from fastapi import FastAPI, BackgroundTasks, status, Response
+from send_email import send_email_background
 from pydantic import BaseModel, EmailStr
-from typing import List
 from link_generator import link_generator, used_number_delete
 
 from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
@@ -45,10 +42,11 @@ class BandcompSchema(BaseModel):
 # verif_list = [] # list email yg belum verifikasi
 
 @app.post('/bandcomp/send-email') # ini send email background
-def send_email_backgroundtasks(background_tasks: BackgroundTasks, bandcomp: BandcompSchema):
+def send_email_backgroundtasks(background_tasks: BackgroundTasks,Response:Response, bandcomp: BandcompSchema):
     
     if check_email(bandcomp.dict().get("email")):
-        return "Email already used please use another email"
+        Response.status_code = status.HTTP_409_CONFLICT
+        return {'status' : "Email already used please use another email"}
     
     link_exten = link_generator(bandcomp.dict().get("email")) #link exten ini sama kayak otpnya
     bandcomp_vote(bandcomp.dict().get("email"), link_exten, bandcomp.dict().get("who"))
@@ -61,19 +59,21 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks, bandcomp: Band
     # print(link_exten)
     # print(type(email.dict().get("email")[0]))
     # print(email.dict().get("email"))
-    return 'Success'
+    return {'status' : 'Success'}
 
 @app.get('/bandcomp/verification')
-async def verification(otp : str):
+async def verification(otp : str, Response:Response):
     if searh_bandcomp_otp(otp):
         bandcomp_vote_verificated(otp)
         used_number_delete(int(otp[3:]))
         return {'status' : 'Success'}
 
     elif already_verificated(otp):
+        Response.status_code = status.HTTP_409_CONFLICT
         return {'status' : 'Already Verified'}
     else:
-        return {'status' : 'Failed'}
+        Response.status_code = status.HTTP_404_NOT_FOUND
+        return {'status' : 'otp not found'}
 
 if __name__ == '__main__':
     uvicorn.run('main:app', reload=True)

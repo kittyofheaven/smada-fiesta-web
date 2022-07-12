@@ -2,9 +2,12 @@ import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
+from fastapi import BackgroundTasks
+
 from pydantic import BaseModel
 from pydantic.networks import EmailStr
 
+from send_email import send_thanks_email_background
 load_dotenv('.env')
 
 client = MongoClient(os.getenv('ATLAS_URI'))

@@ -63,7 +63,9 @@ class Envs:
 #         fm.send_message, message, template_name='email.html')
 
 
-def send_email(reciever, subject, body) :
+def send_otp_email(reciever, subject, otp, who) :
+
+    base_url = "http://localhost:8000/" 
 
     msg = EmailMessage()
     msg['Subject'] = subject
@@ -71,8 +73,14 @@ def send_email(reciever, subject, body) :
     msg['To'] = reciever
     # msg.set_content(body)
 
+    name=reciever.split('@')
+    name=name[0].capitalize()
+    
     template = env.get_template('email.html')
-    output = template.render(title = 'Confirmation', name = 'John Doe') 
+    output = template.render(title = 'Bandcomp 2K22', 
+                            vote_who = who,
+                            name = name,
+                            link = base_url + "bandcomp/verification?otp=" + otp) 
     # with open('templates\email.html', 'r') as f:
         # msg.set_content(f.read())
     msg.add_alternative(output, subtype='html')
@@ -81,5 +89,30 @@ def send_email(reciever, subject, body) :
         smtp.login(Envs.MAIL_USERNAME, Envs.MAIL_PASSWORD)
         smtp.send_message(msg)
 
-def send_email_background(background_tasks: BackgroundTasks, subject: str, reciever: str, body: str):
-    background_tasks.add_task(send_email, reciever, subject, body)
+def send_otp_email_background(background_tasks: BackgroundTasks, subject: str, reciever: str, otp: str, who: str):
+    background_tasks.add_task(send_otp_email, reciever, subject, otp, who)
+
+def send_thanks_email(reciever, who) :
+
+    msg = EmailMessage()
+    msg['Subject'] = "Thank you for your vote at Bandcomp 2k22!"
+    msg['From'] = Envs.MAIL_FROM
+    msg['To'] = reciever
+    # msg.set_content(body)
+
+    name=reciever.split('@')
+    name=name[0].capitalize()
+    
+    template = env.get_template('thankyou.html')
+    output = template.render(title = 'Bandcomp 2K22', 
+                            vote_who = who,
+                            name = name) 
+
+    msg.add_alternative(output, subtype='html')
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(Envs.MAIL_USERNAME, Envs.MAIL_PASSWORD)
+        smtp.send_message(msg)
+
+def send_thanks_email_background(background_tasks: BackgroundTasks, reciever: str, who: str):
+    background_tasks.add_task(send_thanks_email, reciever, who)

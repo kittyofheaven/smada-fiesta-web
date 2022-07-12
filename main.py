@@ -1,9 +1,13 @@
+import os
+from dotenv import load_dotenv
+
 import uvicorn
-from fastapi import FastAPI, BackgroundTasks, status, Response
-from send_email import send_email_background
+from fastapi import FastAPI, BackgroundTasks, status, Response, Request
+from send_email import send_otp_email_background, send_thanks_email_background
 from pydantic import BaseModel, EmailStr
 from link_generator import link_generator, used_number_delete
 
+from pymongo import MongoClient
 from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
 
 ### TODO LIST ###
@@ -12,7 +16,12 @@ from database import check_email, already_verificated, bandcomp_vote, searh_band
 # integrasi html email ke app fastapi
 # mekanisme voting
 
+load_dotenv('.env')
+
 app = FastAPI()
+client = MongoClient(os.getenv('ATLAS_URI'))
+db = client.smadaf
+bandcomp_vote_db = db.bandcomp_vote_database
 
 # print(Envs.MAIL_USERNAME)
 
@@ -52,8 +61,8 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks,Response:Respon
     bandcomp_vote(bandcomp.dict().get("email"), link_exten, bandcomp.dict().get("who"))
     # verif_list.append(link_exten)
 
-    send_email_background(background_tasks, 'Confirm vote for Bandcomp 2k22',  # disini title 
-    bandcomp.dict().get("email"), link_exten) # disini body
+    send_otp_email_background(background_tasks, 'Confirm vote for Bandcomp 2k22',  # disini title 
+    bandcomp.dict().get("email"), link_exten, bandcomp.dict().get("who")) # disini body
 
     # print(verif_list)
     # print(link_exten)
@@ -62,8 +71,11 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks,Response:Respon
     return {'status' : 'Success'}
 
 @app.get('/bandcomp/verification')
-async def verification(otp : str, Response:Response):
+async def verification(otp : str, Response:Response, background_tasks: BackgroundTasks):
     if searh_bandcomp_otp(otp):
+
+        send_thanks_email_background(background_tasks, bandcomp_vote_db.find_one({"otp": otp}).get("email"), bandcomp_vote_db.find_one({"otp": otp}).get("who"))
+
         bandcomp_vote_verificated(otp)
         used_number_delete(int(otp[3:]))
         return {'status' : 'Success'}

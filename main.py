@@ -1,4 +1,5 @@
 import os
+from re import template
 from dotenv import load_dotenv
 
 import uvicorn
@@ -10,6 +11,8 @@ from link_generator import link_generator, used_number_delete
 from pymongo import MongoClient
 from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
 
+from fastapi.templating import Jinja2Templates
+templates = Jinja2Templates(directory="templates")
 ### TODO LIST ###
 # buat link yg dikirim ke pengguna itu jadi dalam bentuk yang pasti
 # html buat email
@@ -71,21 +74,33 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks,Response:Respon
     return {'status' : 'Success'}
 
 @app.get('/bandcomp/verification')
-async def verification(otp : str, Response:Response, background_tasks: BackgroundTasks):
+async def verification(otp : str, Response:Response, background_tasks: BackgroundTasks, request: Request):
     if searh_bandcomp_otp(otp):
 
-        send_thanks_email_background(background_tasks, bandcomp_vote_db.find_one({"otp": otp}).get("email"), bandcomp_vote_db.find_one({"otp": otp}).get("who"))
+        who = bandcomp_vote_db.find_one({"otp": otp}).get("who")
+        email = bandcomp_vote_db.find_one({"otp": otp}).get("email")
+
+        name=email.split('@')
+        name=name[0].capitalize()
+
+        send_thanks_email_background(background_tasks, email , who)
 
         bandcomp_vote_verificated(otp)
         used_number_delete(int(otp[3:]))
-        return {'status' : 'Success'}
+        return templates.TemplateResponse('announcement.html', {'request' : request,
+                                                                'title': 'Thankyou for voting', 
+                                                                'message': f"Hi { name }. Thanks for your vote in Bandcomp 2k22! Your vote to { who } will be recorded."})
 
     elif already_verificated(otp):
         Response.status_code = status.HTTP_409_CONFLICT
-        return {'status' : 'Already Verified'}
+        return templates.TemplateResponse('announcement.html', {'request' : request,
+                                                                'title': 'Already Verificated', 
+                                                                'message': 'You have already verificated your vote'})
     else:
         Response.status_code = status.HTTP_404_NOT_FOUND
-        return {'status' : 'otp not found'}
+        return templates.TemplateResponse('announcement.html', {'request' : request,
+                                                                'title': 'Otp Not Found',
+                                                                'message': 'Your otp cant be found in database, try re-vote or contact admin'})
 
 if __name__ == '__main__':
     uvicorn.run('main:app', reload=True)

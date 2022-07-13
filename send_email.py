@@ -76,7 +76,7 @@ def send_otp_email(reciever, subject, otp, who) :
     name=reciever.split('@')
     name=name[0].capitalize()
     
-    template = env.get_template('email.html')
+    template = env.get_template('otp_email.html')
     output = template.render(title = 'Bandcomp 2K22', 
                             vote_who = who,
                             name = name,
@@ -103,7 +103,7 @@ def send_thanks_email(reciever, who) :
     name=reciever.split('@')
     name=name[0].capitalize()
     
-    template = env.get_template('thankyou.html')
+    template = env.get_template('thankyou_email.html')
     output = template.render(title = 'Bandcomp 2K22', 
                             vote_who = who,
                             name = name) 

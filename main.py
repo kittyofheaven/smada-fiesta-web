@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 import uvicorn
 from fastapi import FastAPI, BackgroundTasks, status, Response, Request
+from fastapi.responses import HTMLResponse
 from send_email import send_otp_email_background, send_thanks_email_background
 from pydantic import BaseModel, EmailStr
 from link_generator import link_generator, used_number_delete
@@ -12,7 +13,8 @@ from pymongo import MongoClient
 from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
 
 from fastapi.templating import Jinja2Templates
-templates = Jinja2Templates(directory="templates")
+from fastapi.staticfiles import StaticFiles
+
 ### TODO LIST ###
 # buat link yg dikirim ke pengguna itu jadi dalam bentuk yang pasti
 # html buat email
@@ -26,11 +28,14 @@ client = MongoClient(os.getenv('ATLAS_URI'))
 db = client.smadaf
 bandcomp_vote_db = db.bandcomp_vote_database
 
+templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 # print(Envs.MAIL_USERNAME)
 
-@app.get('/')
-def index():
-    return 'Hello World'
+@app.get('/', response_class=HTMLResponse)
+async def index(request: Request):
+    return templates.TemplateResponse('index.html', {'request' : request})
 
 
 # EMAIL SECTION

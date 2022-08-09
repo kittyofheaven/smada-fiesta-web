@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(to bottom, #000000 50%, #f2f2f2 55%);
+    height: 3718px;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+#navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* background: rgba(30, 30, 30, 0.33); */
+}
+
+#nav-logo {
+    width: 51px;
+    height: 28.74px;
+    cursor: pointer;
+    margin : 30px
+}
+
+#nav-logo:hover {
+    transform: scale(1.05);
+}
+
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.nav-content {
+    text-decoration: none;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.nav-content:hover {
+    color: #ff5ea2;
+}
+
+.burger {
+    display: none;
+}
+
+.burger div{
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 5px;
+}
+
+.row {
+    display: block ;
+    justify-content: center;
+    align-items: center;
+    /* margin: 100px 0; */
+}
+
+.col-1 {
+    height: 800px;
+}
+
+.col-2 {
+    height: 800px;
+}
+
+.col h2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    text-align: center;
+    color: #ffffff; /* nanti diganti */
+}
+
+
+/* buat mobile */
+
+@media only screen and (max-width: 700px) {
+    nav ul {
+        width: 100%;
+        background-color: white;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        z-index: 2;
+    }
+    nav ul li {
+        list-style: none;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .nav-content{
+        color: #000000;
+    }
+
+    .burger{
+        display: block;
+    }
+    #menu-list {
+        overflow: hidden;
+        transition: 0.5s;
+    }
+}

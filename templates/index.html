@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmadaFiesta</title>
+    <link href="{{ url_for('static', path='index.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-1 col" id="col-1">
+
+                <div id="navbar">
+                    <a href="{{ url_for('index') }}" id="nav-logo">
+                        <img src="{{ url_for('static', path='/images/LOGO.png') }}" alt="SmadaFiesta">
+                    </a>
+                        
+                    <nav>
+                        
+
+                        <ul id="menu-list">
+                            <li><a href="#col-2" class="nav-content">About</a>
+                            <li><a href="#col-5" class="nav-content">Contact</a>
+                            <li><a href="#col-4" class="nav-content">Vote</a>
+                        </ul> 
+
+                        
+                        
+
+                    </nav>
+                    <div class="burger" onclick="togglemenu()">
+                        <div class="line1"></div>
+                        <div class="line2"></div>
+                        <div class="line3"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-2 col" id="col-2">
+                <h2> About </h2>
+            </div>
+            
+            <div class="col-3 col" id="col-3">
+                <h2>Band & Solo Vocal</h2>
+            </div>
+            
+            <div class="col-4 col" id="col-4">
+                <h2>Vote your favorite performance! blablabla</h2>
+            </div>
+
+            <div class="col-5 col" id="col-5">
+                <h2>Contact</h2>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var menuList = document.getElementById("menu-list");
+        // menuList.style.maxHeight = "0px";
+
+        function togglemenu(){
+            if (x.matches) {
+                if(menuList.style.maxHeight == "0px"){
+                    menuList.style.maxHeight = "130px";
+                }
+                else{
+                    menuList.style.maxHeight = "0px";
+                }
+            }
+            else {
+                
+            }
+        }
+
+        var x = window.matchMedia("(max-width: 700px)")
+        togglemenu(x) // Call listener function at run time
+        x.addListener(togglemenu) // Attach listener function on state changes
+    </script>
+
+</body>
+</html>

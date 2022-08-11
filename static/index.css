@@ -11,8 +11,8 @@ body {
 .container {
     width: 100%;
     min-height: 100vh;
-    padding-left: 8%;
-    padding-right: 8%;
+    /* padding-left: 8%;
+    padding-right: 8%; */
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -29,7 +29,8 @@ body {
     width: 51px;
     height: 28.74px;
     cursor: pointer;
-    margin : 30px
+    margin : 30px;
+    margin-left: 80px;
 }
 
 #nav-logo:hover {
@@ -45,6 +46,10 @@ li {
 nav {
     flex: 1;
     text-align: right;
+}
+
+nav ul {
+    margin-right: 80px;
 }
 
 nav ul li {
@@ -76,6 +81,7 @@ nav ul li {
     height: 3px;
     background-color: #ffffff;
     margin: 5px;
+    margin-right: 80px;
 }
 
 .row {
@@ -87,6 +93,10 @@ nav ul li {
 
 .col-1 {
     height: 800px;
+    background-image: url('/static/images/web-daf-desktop.png');
+    background-position: center top;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .col-2 {
@@ -106,8 +116,13 @@ nav ul li {
 /* buat mobile */
 
 @media only screen and (max-width: 700px) {
+
+    .col-1 {
+        background-image: url('/static/images/web-daf-mobile.png');
+    }
+
     nav ul {
-        width: 100%;
+        width: 20%;
         background-color: white;
         position: absolute;
         top: 75px;
@@ -119,6 +134,7 @@ nav ul li {
         display: block;
         margin-top: 10px;
         margin-bottom: 10px;
+        /* border-style: solid; */
     }
     .nav-content{
         color: #000000;

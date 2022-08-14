@@ -22,7 +22,7 @@
 
                         <ul id="menu-list">
                             <li><a href="#col-2" class="nav-content">About</a>
-                            <li><a href="#col-5" class="nav-content">Contact</a>
+                            <li><a href="#social-media" class="nav-content">Contact</a>
                             <li><a href="#col-4" class="nav-content">Vote</a>
                         </ul> 
 
@@ -101,13 +101,26 @@
 
                 </div>
             </div>
-
-            <div class="col-5 col" id="col-5">
-                <h2>Contact</h2>
-            </div>
         </div>
 
     </div>
+    
+    <footer>
+        <h2>SMADAFIESTA</h2>
+        <img src="{{ url_for('static', path='/images/viatrix.png') }}" alt="SmadaFiesta" id="footer-viatrix">
+
+        <ul class="social-icon" id="social-media">
+            <li><a href="https://instagram.com/smadaf2k22?igshid=YmMyMTA2M2Y="><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="https://www.tiktok.com/@areksmada?_t=8Up7HtlYvDu&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li><a href="https://youtube.com/c/SmadaFiesta"><ion-icon name="logo-youtube"></ion-icon></a></li>
+        </ul>
+        <p>Copyright &copy; 2022 <a href="{{ url_for('index') }}">SmadaFiesta</a>, Created by <a href="https://github.com/kittyofheaven">Hazel Handrata</a></p>
+    </footer>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
         var menuList = document.getElementById("menu-list");
         // menuList.style.maxHeight = "0px";

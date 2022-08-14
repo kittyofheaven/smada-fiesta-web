@@ -5,7 +5,7 @@
 
 body {
     background: linear-gradient(to bottom, #000000 50%, #f2f2f2 55%);
-    height: 3718px;
+    height: auto;
 }
 
 .container {
@@ -31,10 +31,11 @@ body {
     cursor: pointer;
     margin : 30px;
     margin-left: 80px;
+    transition: 0.5s;
 }
 
 #nav-logo:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
 }
 
 li {
@@ -66,10 +67,11 @@ nav ul li {
     font-weight: 700;
     font-size: 20px;
     color: #FFFFFF;
+    transition: 0.5s;
 }
 
 .nav-content:hover {
-    color: #ff5ea2;
+    color: #07056b;
 }
 
 .burger {
@@ -183,11 +185,85 @@ nav ul li {
     font-size: 36px;
     color: #000000;
     background-color: #ffffff;
+    transition: 0.5s;
 
 }
 .inside-vote-box a:hover{
-    scale: 1.1;
+    scale: 1.05;
 }
+
+/* FOOTER */
+footer {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    /* background-color: #B53CFF; */
+    min-height: 100px;
+    /* padding: 20px 50px; */
+    display: inline-block;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    background-color: white;
+}
+
+footer h2 {
+    margin-top: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    text-align: center;
+}
+
+#footer-viatrix {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    width: 649px;
+    height: 182px;
+}
+
+footer .social-icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 10px 0px; */
+    flex-wrap: wrap;
+}
+footer .social-icon li a {
+    display: inline-block;
+    font-size: 3em;
+    margin: 0 10px;
+    color: #000000;
+    transition: 0.5s;
+}
+footer .social-icon li a:hover{
+    transform: translateY(-10px);
+}
+
+footer p {
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+footer p a {
+    display: inline-block;
+    text-decoration: none;
+    color: #000000;
+    transition: 0.5s;
+}
+
+footer p a:hover {
+    transform: translateY(-5px);
+}
+
 
 /* buat mobile */
 
@@ -199,7 +275,7 @@ nav ul li {
 
     nav ul {
         width: 20%;
-        background-color: white;
+        /* background-color: white; */
         position: absolute;
         top: 75px;
         right: 0;
@@ -213,7 +289,7 @@ nav ul li {
         /* border-style: solid; */
     }
     .nav-content{
-        color: #000000;
+        color: white;
     }
 
     .burger{
@@ -223,4 +299,24 @@ nav ul li {
         overflow: hidden;
         transition: 0.5s;
     }
+
+    #footer-viatrix {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        width: 449px;
+        height: 126px;
+    }
+
+    footer .social-icon li a {
+        display: inline-block;
+        font-size: 2em;
+        margin: 0 10px;
+        color: #000000;
+        transition: 0.5s;
+    }
+
 }
+
+

@@ -11,24 +11,17 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-1 col" id="col-1" >
+            <div class="col-1 col" id="col-1" background = "{{ url_for('static', path='/images/web-daf-desktop.png') }}">
                 <div id="navbar">
                     <a href="{{ url_for('index') }}" id="nav-logo">
                         <img src="{{ url_for('static', path='/images/LOGO.png') }}" alt="SmadaFiesta">
                     </a>
-                        
-                    <nav>
-                        
-
+                    <nav>                      
                         <ul id="menu-list">
                             <li><a href="#col-2" class="nav-content">About</a>
                             <li><a href="#social-media" class="nav-content">Contact</a>
                             <li><a href="#col-4" class="nav-content">Vote</a>
                         </ul> 
-
-                        
-                        
-
                     </nav>
                     <div class="burger" onclick="togglemenu()">
                         <div class="line1"></div>
@@ -36,8 +29,11 @@
                         <div class="line3"></div>
                     </div>
                 </div>
-
+                <img src="{{ url_for('static', path='/images/tittle_daf.png') }}" alt="title-daf" class="title-daf">
+                
             </div>
+
+
             <div class="col-2 col" id="col-2">
                 <h2> About </h2>
             </div>
@@ -52,53 +48,121 @@
                 
                 <div class="vote-row">
 
-                    <div class="vote-box">
-                        <div class="vote-video"></div>
-                        <div class="inside-vote-box">
-                            <h2>Nama Kompetitor</h2>
-                            <a href="#" type="button">Vote</a>
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="vote-box card-face-front">
+                                <h2>#1</h2>
+                            </div>
+
+                            <div class="vote-box card-face-back">
+                                <div class="vote-video"></div>
+                                <div class="inside-vote-box">
+                                    <h2>Kompetitor #1</h2>
+                                    <a href="#" type="button">Vote</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="vote-box">
-                        <div class="vote-video"></div> 
-                        <div class="inside-vote-box">
-                            <h2>Nama Kompetitor</h2>
-                            <a href="#" type="button">Vote</a>
-                        </div>
-                    </div>
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="vote-box card-face-front">
+                                <h2>#2</h2>
+                            </div>
 
-                    <div class="vote-box">
-                        <div class="vote-video"></div> 
-                        <div class="inside-vote-box">
-                            <h2>Nama Kompetitor</h2>
-                            <a href="#" type="button">Vote</a>
-                        </div>
-                    </div>
-
-                    <div class="vote-box">
-                        <div class="vote-video"></div> 
-                        <div class="inside-vote-box">
-                            <h2>Nama Kompetitor</h2>
-                            <a href="#" type="button">Vote</a>
-                        </div>
-                    </div>
-
-                    <div class="vote-box">
-                        <div class="vote-video"></div> 
-                        <div class="inside-vote-box">
-                            <h2>Nama Kompetitor</h2>
-                            <a href="#" type="button">Vote</a>
+                            <div class="vote-box card-face-back">
+                                <div class="vote-video"></div>
+                                <div class="inside-vote-box">
+                                    <h2>Kompetitor #2</h2>
+                                    <a href="#" type="button">Vote</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="vote-box">
-                        <div class="vote-video"></div> 
-                        <div class="inside-vote-box">
-                            <h2>Nama Kompetitor</h2>
-                            <a href="#" type="button">Vote</a>
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="vote-box card-face-front">
+                                <h2>SMADA BIG BANG</h2>
+                            </div>
+
+                            <div class="vote-box card-face-back">
+                                <div class="vote-video"></div>
+                                <div class="inside-vote-box">
+                                    <h2>Smada Big Bang</h2>
+                                    <a href="#" type="button">Vote</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="vote-box card-face-front">
+                                <h2>SMADA LITTLE KIDS</h2>
+                            </div>
+
+                            <div class="vote-box card-face-back">
+                                <div class="vote-video"></div>
+                                <div class="inside-vote-box">
+                                    <h2>Smada Little Kids</h2>
+                                    <a href="#" type="button">Vote</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="vote-box card-face-front">
+                                <h2>#5</h2>
+                            </div>
+
+                            <div class="vote-box card-face-back">
+                                <div class="vote-video"></div>
+                                <div class="inside-vote-box">
+                                    <h2>Kompetitor #5</h2>
+                                    <a href="#" type="button">Vote</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="vote-box card-face-front">
+                                <h2>#6</h2>
+                            </div>
+
+                            <div class="vote-box card-face-back">
+                                <div class="vote-video"></div>
+                                <div class="inside-vote-box">
+                                    <h2>Kompetitor #6</h2>
+                                    <a href="#" type="button">Vote</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="vote-box card-face-front">
+                                <h2>#7</h2>
+                            </div>
+
+                            <div class="vote-box card-face-back">
+                                <div class="vote-video"></div>
+                                <div class="inside-vote-box">
+                                    <h2>Kompetitor #7</h2>
+                                    <a href="#" type="button">Vote</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    
 
                 </div>
             </div>
@@ -123,6 +187,17 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
+
+        const card = document.querySelectorAll('.card-inner');
+
+        card.forEach(card => {
+            card.addEventListener('click', function(){
+                card.classList.toggle('is-flipped');
+            });
+        });
+
+        
+
         var menuList = document.getElementById("menu-list");
         // menuList.style.maxHeight = "0px";
 
@@ -140,7 +215,7 @@
             }
         }
 
-        var x = window.matchMedia("(max-width: 700px)")
+        var x = window.matchMedia("(max-width: 768px)")
         togglemenu(x) // Call listener function at run time
         x.addListener(togglemenu) // Attach listener function on state changes
     </script>

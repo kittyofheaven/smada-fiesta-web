@@ -77,7 +77,7 @@ def send_otp_email(reciever, subject, otp, who) :
     name=name[0].capitalize()
     
     template = env.get_template('otp_email.html')
-    output = template.render(title = 'Bandcomp 2K22', 
+    output = template.render(title = 'BANDCOMP 2K22 VOTING CONFIRMATION', 
                             vote_who = who,
                             name = name,
                             link = base_url + "bandcomp/verification?otp=" + otp) 
@@ -104,7 +104,7 @@ def send_thanks_email(reciever, who) :
     name=name[0].capitalize()
     
     template = env.get_template('thankyou_email.html')
-    output = template.render(title = 'Bandcomp 2K22', 
+    output = template.render(title = 'BANDCOMP 2K22 VOTING CONFIRMATION', 
                             vote_who = who,
                             name = name) 
 

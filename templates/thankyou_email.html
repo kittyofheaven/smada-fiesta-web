@@ -1,23 +1,155 @@
-<html>
-<body style="margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif;">
-<div style="width: 100%; background: black; border-radius: 10px; padding: 10px;">
-    
-    <div style="margin: 0 auto; width: 90%; text-align: center;">
-        <h1 style="background-color: #2E0249; padding: 5px 10px; border-radius: 5px; color: white;">
-            {{ title }}
-        </h1>
-        
-        <div style="margin: 30px auto; background: white; width: 40%; border-radius: 10px; padding: 50px; text-align: center;">
-            
-            <h3 style="color:black; margin-bottom: 100px; font-size: 24px;">
-                Thanyou for your vote!
-            </h3>
-            
-            <p style="margin-bottom: 30px; color:black;">
-                Hi {{ name }}. Thanks for your confirmation to vote {{ vote_who }}, we have recorded your vote.
-            </p>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smadafiesta: Thankyou for your vote! </title>
+
+    <style>
+        /* FOOTER */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: normal;
+            color: #000000;
+        }
+
+        .container {
+            box-sizing: border-box;
+            padding-left: 20px;
+            padding-right: 20px;
+            align-items: center;
+        }
+
+        .container h1 {
+            margin-top: 50px;
+            font-weight: 700;
+            font-size: 40px;
+            text-align: center;
+            color: #000000;
+        }
+        .container h2 {
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 30px;
+            text-align: center;
+            color: #000000;
+        }
+        .container p {
+            max-width: 320px;
+            margin: 10px auto 0 auto;
+            text-align: center;
+            color: #000000;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            list-style : none
+        }
+
+        footer {
+            margin-top: 50px;
+            box-sizing: border-box;
+            position: relative;
+            width: 100%;
+            /* background-color: #B53CFF; */
+            min-height: 100px;
+            /* padding: 20px 50px; */
+            display: inline-block;
+            justify-content: center;
+            overflow: hidden;
+            align-items: center;
+            background-color: white;
+        }
+
+        footer h2 {
+            margin-top: 50px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        #footer-viatrix {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            width: 649px;
+            height: 182px;
+        }
+        .social-container {
+            text-align: center;
+        }
+
+        footer .social-icon {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            /* margin: 10px 0px; */
+            flex-wrap: wrap;
+            margin: 0 auto 0 auto;
+            text-align: left;
+        }
+        footer .social-icon li a {
+            display: block;
+            text-decoration: none;
+            font-size: 1em;
+            margin: 0 10px;
+            color: #000000;
+
+        }
+
+
+        footer p {
+            text-align: center;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-size: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        footer p a {
+            display: inline-block;
+            text-decoration: none;
+            color: #000000;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>{{ title }}</h1>
+        <h2>Thankyou for your vote!</h2>
+
+        <p>Hi {{ name }}. Thanks for your confirmation to vote {{ vote_who }}, we have recorded your vote.</p>
     </div>
-</div>
+
+    <footer>
+        <img src="http://127.0.0.1:8000/static/images/viatrix.png" alt="SmadaFiesta" id="footer-viatrix">
+        <div class="social-container">
+            <ul class="social-icon" id="social-media">
+                <li><a href="https://instagram.com/smadaf2k22?igshid=YmMyMTA2M2Y=">Instagram</a></li>
+                <li><a href="https://www.tiktok.com/@areksmada?_t=8Up7HtlYvDu&_r=1">Tiktok</a></li>
+                <li><a href="https://twitter.com/smadaf2k22?t=n-5qrV_guJcLAiiUBvTnsQ&s=09">Twitter</a></li>
+                <li><a href="https://youtube.com/c/SmadaFiesta">Youtube</a></li>
+            </ul>
+        </div>
+        <p>Copyright &copy; 2022 <a href="#">SmadaFiesta</a></p>
+    </footer>
 </body>
 </html>

@@ -1,3 +1,8 @@
+:root{
+    --primary : #8080D7;
+    --secondary : #010922;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +13,7 @@ html {
 }
 
 body {
-    background: linear-gradient(to bottom, #1e1e1e 50%, #f2f2f2 55%);
+    background-color: #1e1e1e;
     height: auto;
 }
 
@@ -98,12 +103,19 @@ nav ul li {
 }
 
 .col-1 {
-    height: 800px;
-    /* background-image: url('/static/images/web-daf-desktop.png'); */
-    /* background-position: center top; */
+    height: 900px;
+    background-image: url('/static/images/web-daf-desktop.png');
+    background-position: right top;
     /* background-size: contain; */
-    /* background-repeat: no-repeat; */
+    background-repeat: no-repeat;
 }
+
+.title-daf{
+    margin: 100px 0 auto -100px;
+    vertical-align: middle;
+}
+
+
 
 .col-2 {
     height: 800px;
@@ -116,6 +128,14 @@ nav ul li {
     font-size: 36px;
     text-align: center;
     color: #ffffff; /* nanti diganti */
+}
+
+.col-3{
+    display: flex;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    margin-bottom: -42px;
 }
 
 .col-3 .bandcomp-desktop{
@@ -145,17 +165,59 @@ nav ul li {
     align-items: center;
 }
 
-.vote-box{
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 50px;
-    display: inline;
+.card {
     width: 336px;
     height: 400px;
-    border-radius: 16px;
+    margin-left: 10px;
+    margin-right: 0px;
+    margin-top: 25px;
+    margin-bottom: 25px;
     box-sizing: border-box;
-    background-color: #B53CFF;
 }
+
+.card-inner {
+    width: 100%;
+    height: 100%;;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+}
+
+.card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+
+.vote-box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: inline;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 16px;
+    background-color:#B53CFF ;
+    box-shadow: 0px 3px 18px 3px rgba(0,0,0,0.33);
+}
+
+.card-face-front{
+    background-image: url('https://wallpapercave.com/wp/wp2874825.jpg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-face-front h2 {
+    color: white;
+    font-size: 32px;
+}
+
+.card-face-back {
+    transform: rotateY(180deg);
+
+}
+
+
 .vote-video {
     width: 100%;
     height: 200px;
@@ -280,11 +342,50 @@ footer p a:hover {
 
 /* buat mobile */
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 1100px) {
+    .title-daf {
+        margin: 100px 0 auto -200px;
+    }
+}
 
-    /* .col-1 {
+@media only screen and (max-width: 970px) {
+    .title-daf {
+        margin: 100px 0 auto -250px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .title-daf {
+        margin: 100px 0 auto -260px;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    .title-daf {
+        margin: 500px 0;
+        position: relative;
+        height: 267px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .col-1 {
+        height: 1300px;
         background-image: url('/static/images/web-daf-mobile.png');
-    } */
+        background-position: center top;
+
+    }
+    .title-daf {
+        display: block;
+        margin:0;
+        position: relative;
+        height: 267px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
     .col-2 h2{
         font-size: 30px;

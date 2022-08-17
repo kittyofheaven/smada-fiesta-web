@@ -269,6 +269,7 @@ nav ul li {
 
 /* FOOTER */
 footer {
+    margin: -10px;
     box-sizing: border-box;
     position: relative;
     width: 100%;
@@ -287,7 +288,7 @@ footer h2 {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 35px;
     text-align: center;
 }
 
@@ -296,8 +297,8 @@ footer h2 {
     margin-left: auto;
     margin-right: auto;
     align-items: center;
-    width: 649px;
-    height: 182px;
+    width: 500px;
+    height: auto;
 }
 
 footer .social-icon {
@@ -310,8 +311,8 @@ footer .social-icon {
 }
 footer .social-icon li a {
     display: inline-block;
-    font-size: 3em;
-    margin: 0 10px;
+    font-size: 2.5em;
+    margin: 0 12px;
     color: #000000;
     transition: 0.5s;
 }
@@ -323,7 +324,7 @@ footer p {
     text-align: center;
     font-family: 'Poppins';
     font-style: normal;
-    font-size: 12px;
+    font-size: 10px;
     margin-top: 10px;
     margin-bottom: 20px;
 }
@@ -431,13 +432,22 @@ footer p a:hover {
         display: none;
     }
 
+    footer h2 {
+        margin-top: 50px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        text-align: center;
+    }
+
     #footer-viatrix {
         display: block;
         margin-left: auto;
         margin-right: auto;
         align-items: center;
-        width: 449px;
-        height: 126px;
+        width: 400px;
+        height: auto;
     }
 
     footer .social-icon li a {

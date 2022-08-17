@@ -1,19 +1,185 @@
-<html>
-<body style="background: black; margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smadafiesta: {{ title }}</title>
 
-    <div style="margin: 0 auto; width: 90%; text-align: center;">
+    <style>
         
-        <div style="margin: 30px auto; background: white; width: 40%; border-radius: 10px; padding: 50px; text-align: center;">
-            
-            <h3 style="color:black; margin-bottom: 100px; font-size: 24px;">
-                {{ title }}
-            </h3>
-            
-            <p style="margin-bottom: 30px; color:black;">
-                {{ message }}
-            </p>
-        </div>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1e1e1e;
+            height: auto;
+            font-family: 'Poppins';
+            font-style: normal;
+        }
+
+        li {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #navbar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            /* background: rgba(30, 30, 30, 0.33); */
+        }
+
+        #nav-logo {
+            width: 51px;
+            height: 28.74px;
+            cursor: pointer;
+            margin : 30px;
+            margin-left: 80px;
+            transition: 0.5s;
+        }
+
+        #nav-logo:hover {
+            transform: translateY(-5px);
+        }
+
+        .announcement {
+            color: white;
+            text-align: center;
+            justify-content: space-around;
+            margin: 100px auto;
+        }
+
+        /* FOOTER */
+        footer {
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* background-color: #B53CFF; */
+            min-height: 100px;
+            /* padding: 20px 50px; */
+            display: inline-block;
+            justify-content: center;
+            overflow: hidden;
+            align-items: center;
+        }
+
+        footer h2 {
+            margin-top: 50px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        #footer-viatrix {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            width: 370px;
+            height: auto;
+        }
+
+        footer .social-icon {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin: 10px 0px; */
+            flex-wrap: wrap;
+        }
+        footer .social-icon li a {
+            display: inline-block;
+            font-size: 2em;
+            margin: 0 12px;
+            color: #FFFFFF;
+            transition: 0.5s;
+        }
+        footer .social-icon li a:hover{
+            transform: translateY(-10px);
+        }
+
+        footer p {
+            text-align: center;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-size: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        footer p a {
+            display: inline-block;
+            text-decoration: none;
+            color: aliceblue;
+            transition: 0.5s;
+        }
+
+        footer p a:hover {
+            transform: translateY(-5px);
+        }
+
+
+        @media only screen and (max-width: 768px) {
+            #footer-viatrix {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                align-items: center;
+                width: 320px;
+                height: auto;
+            }
+
+            footer .social-icon li a {
+                display: inline-block;
+                font-size: 2em;
+                margin: 0 10px;
+                color: #ffffff;
+                transition: 0.5s;
+            }
+        }
+        
+
+    </style>
+
+
+</head>
+<body>
+    <div id="navbar">
+        <a href="{{ url_for('index') }}" id="nav-logo">
+            <img src="{{ url_for('static', path='/images/LOGO.png') }}" alt="SmadaFiesta">
+        </a>
     </div>
+    <div class="announcement">
+        <h1>{{ title }}</h1>
+        <p>{{ message }}</p>
+    </div>
+
+    <footer>
+        <h2>SMADAFIESTA</h2>
+        <img src="{{ url_for('static', path='/images/viatrix-dark.png') }}" alt="SmadaFiesta" id="footer-viatrix">
+
+        <ul class="social-icon" id="social-media">
+            <li><a href="https://instagram.com/smadaf2k22?igshid=YmMyMTA2M2Y="><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="https://www.tiktok.com/@areksmada?_t=8Up7HtlYvDu&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a></li>
+            <li><a href="https://twitter.com/smadaf2k22?t=n-5qrV_guJcLAiiUBvTnsQ&s=09"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li><a href="https://youtube.com/c/SmadaFiesta"><ion-icon name="logo-youtube"></ion-icon></a></li>
+        </ul>
+        <p>Copyright &copy; 2022 <a href="{{ url_for('index') }}">SmadaFiesta</a>, Developed by <a href="https://github.com/kittyofheaven">Hazel Handrata</a></p>
+    </footer>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 
 </body>
 </html>

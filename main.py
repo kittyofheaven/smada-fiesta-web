@@ -107,5 +107,49 @@ async def verification(otp : str, Response:Response, background_tasks: Backgroun
                                                                 'title': 'Otp Not Found',
                                                                 'message': 'Your otp cant be found in database, try re-vote or contact admin'})
 
+@app.get('/bandcomp/video')
+async def band_video(band_id : int, Response:Response, request: Request):
+
+
+    # band id dict sama band link dict harus kerja sama jadi harus teliti yyy
+
+    band_id_dict = {1 : 'aaaa',
+                    2 : 'bbbb',
+                    3 : 'smada big bang',
+                    4 : "smada little kids",
+                    5 : "eeee",
+                    6 : "ffff",
+                    7 : "gggg",
+                    8 : "hhhh",
+                    9 : "iiii",
+                    10 : "jjjj",
+                    11 : "kkkk",
+                    12 : "llll",
+                    13 : "mmmm",
+                    14 : "nnnn",
+                    15 : "oooo",}
+
+    band_link_dict = {  "smada big bang" : "yQ67XSO5S2Q",
+                        "smada little kids" : "XI0q7L_S2mo",}
+
+    try :
+        band_who= band_id_dict[band_id].lower()
+
+    except:
+        Response.status_code = status.HTTP_404_NOT_FOUND
+        return templates.TemplateResponse('announcement.html', {'request' : request,
+                                                                'title': 'Band Video Not Found',
+                                                                'message': 'Already uploaded? Try to contact Admin'})
+    try :
+        return templates.TemplateResponse('video_template.html', {  'request': request,
+                                                                    'title' : band_who,
+                                                                    'band_link' : band_link_dict[band_who]})
+    except:
+        Response.status_code = status.HTTP_404_NOT_FOUND
+        return templates.TemplateResponse('announcement.html', {'request' : request,
+                                                                'title': 'Band Video Not Found',
+                                                                'message': 'Already uploaded? Try to contact Admin'})
+
+
 if __name__ == '__main__':
     uvicorn.run('main:app', reload=True)

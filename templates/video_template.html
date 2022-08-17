@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmadaFiesta: {{ title }}</title>
+    <link href="{{ url_for('static', path='video_template.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar">
+        <a href="{{ url_for('index') }}" id="nav-logo">
+            <img src="{{ url_for('static', path='/images/LOGO.png') }}" alt="SmadaFiesta">
+        </a>
+    </div>
+    <div class="container">
+        <div class="band_video">
+            <iframe src="https://www.youtube.com/embed/{{band_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a class="vote_button" href="#" type="button">Vote</a>
+    </div>
+
+    <footer>
+        <h2>SMADAFIESTA</h2>
+        <img src="{{ url_for('static', path='/images/viatrix-dark.png') }}" alt="SmadaFiesta" id="footer-viatrix">
+
+        <ul class="social-icon" id="social-media">
+            <li><a href="https://instagram.com/smadaf2k22?igshid=YmMyMTA2M2Y="><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="https://www.tiktok.com/@areksmada?_t=8Up7HtlYvDu&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a></li>
+            <li><a href="https://twitter.com/smadaf2k22?t=n-5qrV_guJcLAiiUBvTnsQ&s=09"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li><a href="https://youtube.com/c/SmadaFiesta"><ion-icon name="logo-youtube"></ion-icon></a></li>
+        </ul>
+        <p>Copyright &copy; 2022 <a href="{{ url_for('index') }}">SmadaFiesta</a>, Developed by <a href="https://github.com/kittyofheaven">Hazel Handrata</a></p>
+    </footer>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

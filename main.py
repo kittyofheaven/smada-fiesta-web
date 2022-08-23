@@ -143,6 +143,7 @@ async def band_video(band_id : int, Response:Response, request: Request):
     try :
         return templates.TemplateResponse('video_template.html', {  'request': request,
                                                                     'title' : band_who,
+                                                                    'who' : band_who,
                                                                     'band_link' : band_link_dict[band_who]})
     except:
         Response.status_code = status.HTTP_404_NOT_FOUND

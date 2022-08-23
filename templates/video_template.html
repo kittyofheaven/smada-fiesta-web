@@ -17,7 +17,14 @@
         <div class="band_video">
             <iframe src="https://www.youtube.com/embed/{{band_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <a class="vote_button" href="#" type="button">Vote</a>
+
+        <form class="form-box" id="form-box">
+            <input type="email" id="email" class="email" name="email" placeholder="Enter Your Email">
+            <button class="vote_button" type="submit">Vote</button>
+        </form>
+
+        <div id="error-messages"><p>aaaaaaaaa</p></div>
+
     </div>
 
     <footer>
@@ -32,10 +39,48 @@
         </ul>
         <p>Copyright &copy; 2022 <a href="{{ url_for('index') }}">SmadaFiesta</a>, Developed by <a href="https://github.com/kittyofheaven">Hazel Handrata</a></p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script>
 
+    $( document ).ready(function() {
+
+        // https://youtu.be/In0nB0ABaUk
+
+        const who = "{{ who }}";    
+        const api_link = "{{ url_for('send_email_backgroundtasks') }}/";
+
+        const email = document.getElementById('email');
+        const form = document.getElementById('form-box');
+        const error_messages = document.getElementById('error-messages');
+
+        form.addEventListener('submit', (e) => {
+
+            let messages = []
+            if (email.value === '' || email.value === null) {
+                messages.push('Email is required');
+            }
+
+            if (messages.length > 0) {
+                e.preventDefault();
+                console.log(messages);
+                error_messages.innerText = messages.join(', ');
+            } 
+
+            e.preventDefault();
+        });
+
+
+        console.log(api_link)
+
+    });
+
+        
+    </script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
 
 </body>
 </html>

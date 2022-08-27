@@ -15,6 +15,7 @@ from database import check_email, already_verificated, bandcomp_vote, searh_band
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
+from starlette.exceptions import HTTPException as StarletteHTTPException
 ### TODO LIST ###
 # buat link yg dikirim ke pengguna itu jadi dalam bentuk yang pasti
 # html buat email
@@ -32,6 +33,26 @@ templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # print(Envs.MAIL_USERNAME)
+
+@app.exception_handler(StarletteHTTPException)
+async def exception_handler(request: Request, exc: StarletteHTTPException):
+    
+    if exc.status_code == 404:
+        return templates.TemplateResponse('announcement.html', {'request' : request,
+                                                                'title': str(exc.status_code) + ' ' + str(exc.detail), 
+                                                                'message': "The page you requested was not found."})
+
+    elif exc.status_code == 500:
+        return templates.TemplateResponse('announcement.html', {'request' : request,
+                                                                'title': str(exc.status_code) + ' ' + str(exc.detail), 
+                                                                'message': "Internal server error, please try again later."})
+    else:
+        # Generic error page
+        return templates.TemplateResponse('announcement.html', {'request' : request,
+                                                                'title': str(exc.status_code) + ' ' + str(exc.detail), 
+                                                                'message': str(exc.status_code) + ' ' + str(exc.detail) + " error"})
+
+
 
 @app.get('/', response_class=HTMLResponse)
 async def index(request: Request):
@@ -60,7 +81,7 @@ class BandcompSchema(BaseModel):
 
 @app.post('/bandcomp/send-email') # ini send email background
 def send_email_backgroundtasks(background_tasks: BackgroundTasks,Response:Response, bandcomp: BandcompSchema):
-    
+    # print(bandcomp.dict())
     if check_email(bandcomp.dict().get("email")):
         Response.status_code = status.HTTP_409_CONFLICT
         return {'status' : "Email already used please use another email"}
@@ -153,4 +174,4 @@ async def band_video(band_id : int, Response:Response, request: Request):
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app', reload=True)
+    uvicorn.run('main:app')

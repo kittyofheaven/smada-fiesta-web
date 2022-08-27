@@ -118,7 +118,7 @@ li {
     transform: translateY(-3px);
 }
 
-.error-messages{
+#error-messages{
     margin-top: 5px;
     display: flex;
     align-items: center;
@@ -130,6 +130,19 @@ li {
     font-weight: 700;
     font-size: 15px;
     color: red;
+}
+#success-messages{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center ;
+    text-decoration:none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: rgb(44, 250, 44);
 }
 
 /* FOOTER */

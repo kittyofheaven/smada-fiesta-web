@@ -23,7 +23,8 @@
             <button class="vote_button" type="submit">Vote</button>
         </form>
 
-        <div id="error-messages"><p>aaaaaaaaa</p></div>
+        <h2 id="error-messages"></h2>
+        <h2 id="success-messages"></h2>
 
     </div>
 
@@ -39,7 +40,7 @@
         </ul>
         <p>Copyright &copy; 2022 <a href="{{ url_for('index') }}">SmadaFiesta</a>, Developed by <a href="https://github.com/kittyofheaven">Hazel Handrata</a></p>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
 
     $( document ).ready(function() {
@@ -47,30 +48,71 @@
         // https://youtu.be/In0nB0ABaUk
 
         const who = "{{ who }}";    
-        const api_link = "{{ url_for('send_email_backgroundtasks') }}/";
+        const api_link = "{{ url_for('send_email_backgroundtasks') }}";
 
         const email = document.getElementById('email');
         const form = document.getElementById('form-box');
         const error_messages = document.getElementById('error-messages');
+        const success_messages = document.getElementById('success-messages');
+        
 
         form.addEventListener('submit', (e) => {
 
             let messages = []
-            if (email.value === '' || email.value === null) {
+            if (email.value === '' || email.value == null) {
                 messages.push('Email is required');
+            }
+
+            if (email.value.indexOf('.') === -1) {
+                messages.push('Email is invalid');
             }
 
             if (messages.length > 0) {
                 e.preventDefault();
-                console.log(messages);
+                // console.log(messages);
                 error_messages.innerText = messages.join(', ');
+                
             } 
+            
+            // console.log(email.value);
+            // console.log(api_link)
+            else {
+                e.preventDefault();
 
-            e.preventDefault();
+                // console.log(typeof who)
+                // console.log(typeof api_link)
+                // console.log(typeof email.value)
+
+                $.ajax({
+                    url: api_link,
+                    type: 'post',
+                    data: JSON.stringify({'email': email.value ,'who': who}),
+
+                    contentType: "application/json",  
+                    dataType: 'json',
+
+                    success: function(response) {
+                        console.log(response['status']);
+                        error_messages.innerText = "";
+                        success_messages.innerText = "An email verification link has been sent to your email";
+                    },
+
+                    error: function(response){
+                        error = response['responseJSON']['status'];
+                        messages.push(error);
+                        success_messages.innerText = "";
+                        error_messages.innerText = messages.join(', ');
+                    }
+
+                });
+
+                // console.log(bk_response.responseJSON);
+                // console.log($parseJSON(bk_response.responseJSON));
+            }
+            
         });
 
 
-        console.log(api_link)
 
     });
 

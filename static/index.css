@@ -9,12 +9,17 @@
 }
 
 html {
+    height: 100%;
     scroll-behavior: smooth;
+    
 }
 
 body {
-    background-color: #1e1e1e;
     height: auto;
+}
+#my-scrollbar{
+    height: 100vh;
+    overflow: auto;
 }
 
 .container {
@@ -24,6 +29,7 @@ body {
     padding-right: 8%; */
     box-sizing: border-box;
     overflow: hidden;
+    background: linear-gradient(#1e1e1e 45%, #ffffff 45%);
 }
 
 
@@ -115,7 +121,17 @@ nav ul li {
     vertical-align: middle;
 }
 
+.reveal {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: all 2s ease;
+}
 
+.reveal.active {
+    transform: translateY(0px);
+    opacity: 1;
+}
 
 .col-2 {
     height: 800px;

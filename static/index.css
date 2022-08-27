@@ -28,6 +28,7 @@ html {
 #navbar {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     /* background: rgba(30, 30, 30, 0.33); */
 }
@@ -140,10 +141,11 @@ nav ul li {
 
 .col-3{
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     height: auto;
     box-sizing: border-box;
-    margin-bottom: -42px;
+    margin-bottom: -10px;
 }
 
 .col-3 .bandcomp-desktop{
@@ -166,6 +168,7 @@ nav ul li {
 }
 .vote-row {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     flex-flow: wrap;
 
@@ -185,7 +188,7 @@ nav ul li {
 
 .card-inner {
     width: 100%;
-    height: 100%;;
+    height: 100%;
     transition: transform 1s;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -212,6 +215,7 @@ nav ul li {
 .card-face-front{
     background-image: url('https://wallpapercave.com/wp/wp2874825.jpg');
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
@@ -277,7 +281,7 @@ nav ul li {
 
 /* FOOTER */
 footer {
-    margin: -10px;
+    /* margin-top: -10px; */
     box-sizing: border-box;
     position: relative;
     width: 100%;
@@ -363,6 +367,12 @@ footer p a:hover {
     }
 }
 
+@media only screen and (max-width: 931px) {
+    .container{
+        background: linear-gradient(#1e1e1e 35%, #ffffff 35%)
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .title-daf {
         margin: 100px 0 auto -260px;
@@ -372,7 +382,7 @@ footer p a:hover {
 @media only screen and (max-width: 822px) {
 
     .container{
-        overflow: auto;
+        overflow: visible;
     }
 
     .title-daf {
@@ -385,6 +395,10 @@ footer p a:hover {
 }
 
 @media only screen and (max-width: 768px) {
+
+    .container{
+        background: linear-gradient(#1e1e1e 37%, #ffffff 37%)
+    }
 
     .col-1 {
         height: 1300px;

@@ -65,7 +65,7 @@ class Envs:
 
 def send_otp_email(reciever, subject, otp, who) :
 
-    base_url = "http://localhost:8000/" 
+    base_url = "https://smada-fiesta-demo-web.herokuapp.com/" 
 
     msg = EmailMessage()
     msg['Subject'] = subject

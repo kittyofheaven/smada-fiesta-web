@@ -11,16 +11,8 @@
 html {
     height: 100%;
     scroll-behavior: smooth;
-    
 }
 
-body {
-    height: auto;
-}
-#my-scrollbar{
-    height: 100vh;
-    overflow: auto;
-}
 
 .container {
     width: 100%;
@@ -28,7 +20,7 @@ body {
     /* padding-left: 8%;
     padding-right: 8%; */
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
     background: linear-gradient(#1e1e1e 45%, #ffffff 45%);
 }
 
@@ -45,7 +37,7 @@ body {
     height: 28.74px;
     cursor: pointer;
     margin : 30px;
-    margin-left: 80px;
+    margin-left: 40px;
     transition: 0.5s;
 }
 
@@ -65,7 +57,7 @@ nav {
 }
 
 nav ul {
-    margin-right: 80px;
+    margin-right: 40px;
 }
 
 nav ul li {
@@ -98,7 +90,7 @@ nav ul li {
     height: 3px;
     background-color: #ffffff;
     margin: 5px;
-    margin-right: 80px;
+    margin-right: 40px;
 }
 
 .row {
@@ -377,7 +369,12 @@ footer p a:hover {
     }
 }
 
-@media only screen and (max-width: 820px) {
+@media only screen and (max-width: 822px) {
+
+    .container{
+        overflow: hidden;
+    }
+
     .title-daf {
         margin: 500px 0;
         position: relative;

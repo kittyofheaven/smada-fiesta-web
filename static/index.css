@@ -146,6 +146,11 @@ nav ul li {
     height: auto;
     box-sizing: border-box;
     margin-bottom: -10px;
+    background-color: white;
+}
+.transition-box{
+    height: 700px;
+    background-color: white;
 }
 
 .col-3 .bandcomp-desktop{
@@ -381,23 +386,24 @@ footer p a:hover {
 
 @media only screen and (max-width: 822px) {
 
-    .container{
-        overflow: visible;
-    }
+    /* .container{
+        overflow-x: hidden;
+    } */
 
     .title-daf {
-        margin: 500px 0;
+        display: none;
+        /* margin: 500px 0;
         position: relative;
         height: 267px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%); */
     }
 }
 
 @media only screen and (max-width: 768px) {
 
     .container{
-        background: linear-gradient(#1e1e1e 37%, #ffffff 37%)
+        background: linear-gradient(#1e1e1e 35%, #ffffff 35%)
     }
 
     .col-1 {
@@ -406,18 +412,24 @@ footer p a:hover {
         background-position: center top;
 
     }
-    .title-daf {
+    /* .title-daf {
         display: block;
         margin:0;
         position: relative;
         height: 267px;
         left: 50%;
         transform: translateX(-50%);
-    }
+    } */
 
     .col-2 h2{
         font-size: 30px;
     }
+
+    /* .transition-box{
+        height: 1000px;
+        background-color: white;
+    } */
+
     .col-4 .vote-your {
         font-size: 30px;
     }
@@ -488,3 +500,8 @@ footer p a:hover {
 }
 
 
+@media only screen and (max-width: 620px) {
+    .container{
+        background: linear-gradient(#1e1e1e 22%, #ffffff 22%)
+    }
+}

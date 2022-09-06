@@ -40,6 +40,7 @@ html {
     margin : 30px;
     margin-left: 40px;
     transition: 0.5s;
+    z-index: 3;
 }
 
 #nav-logo:hover {
@@ -55,6 +56,7 @@ li {
 nav {
     flex: 1;
     text-align: right;
+    z-index: 3;
 }
 
 nav ul {
@@ -84,6 +86,7 @@ nav ul li {
 
 .burger {
     display: none;
+    z-index: 10001;
 }
 
 .burger div{
@@ -102,11 +105,66 @@ nav ul li {
 }
 
 .col-1 {
-    height: 900px;
-    background-image: url('/static/images/web-daf-desktop.png');
-    background-position: right top;
+    height: auto;
+    /* background-image: url('/static/images/web-daf-desktop.png'); */
+    /* background-position: right top; */
     /* background-size: contain; */
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
+}
+.parallax{
+    margin-top: -90px;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.parallax:before {
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, #0a2a43, transparent);
+    z-index: 10000;
+}
+
+.parallax:after {
+    content: ' ';
+    position: absolute;
+    top:  0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:  #0a2a43;
+    z-index: 10000;
+    mix-blend-mode: color;
+}
+
+.parallax img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.parallax h1 {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    color: #FFFFFF;
+    font-size: 100px;
+    z-index: 1;
+}
+
+.parallax #rocks {
+    z-index: 2;
+    /* margin-bottom: -100px; */
 }
 
 .title-daf{
@@ -408,8 +466,8 @@ footer p a:hover {
 
     .col-1 {
         height: 1300px;
-        background-image: url('/static/images/web-daf-mobile.png');
-        background-position: center top;
+        /* background-image: url('/static/images/web-daf-mobile.png'); */
+        /* background-position: center top; */
 
     }
     /* .title-daf {
@@ -440,13 +498,14 @@ footer p a:hover {
         position: absolute;
         top: 75px;
         right: 0;
-        z-index: 2;
+        z-index: 3;
     }
     nav ul li {
         list-style: none;
         display: block;
         margin-top: 10px;
         margin-bottom: 10px;
+        z-index: 3;
         /* border-style: solid; */
     }
     .nav-content{
@@ -455,10 +514,16 @@ footer p a:hover {
 
     .burger{
         display: block;
+        z-index: 10001;
     }
     #menu-list {
         overflow: hidden;
         transition: 0.5s;
+        z-index: 3;
+    }
+
+    .parallax h1 {
+        font-size: 70px;
     }
 
     .col-3 .bandcomp-mobile{
@@ -504,4 +569,11 @@ footer p a:hover {
     .container{
         background: linear-gradient(#1e1e1e 22%, #ffffff 22%)
     }
+}
+
+@media only screen and (max-width: 500px) {
+    .parallax h1 {
+        font-size: 45px;
+    }
+
 }

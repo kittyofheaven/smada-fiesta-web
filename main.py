@@ -9,9 +9,8 @@ from send_email import send_otp_email_background, send_thanks_email_background
 from pydantic import BaseModel, EmailStr
 from link_generator import link_generator, used_number_delete
 
-import firebase_admin
-from firebase_admin import credentials, firestore
-from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated, db
+from pymongo import MongoClient
+from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
 
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -26,7 +25,9 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 load_dotenv('.env')
 
 app = FastAPI()
-bandcomp_vote_db = db.collection('vote')
+client = MongoClient(os.getenv('ATLAS_URI'))
+db = client.smadaf
+bandcomp_vote_db = db.bandcomp_vote_database
 
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -103,9 +104,8 @@ async def verification(otp : str, Response:Response, background_tasks: Backgroun
 
     if searh_bandcomp_otp(otp):
 
-        key = bandcomp_vote_db.where('otp', '==', otp).get()[0].id
-        who = bandcomp_vote_db.document(key).get().to_dict()['who']
-        email = bandcomp_vote_db.document(key).get().to_dict()['email']
+        who = bandcomp_vote_db.find_one({"otp": otp}).get("who")
+        email = bandcomp_vote_db.find_one({"otp": otp}).get("email")
 
 
         name=email.split('@')

@@ -33,7 +33,7 @@
                 <div class="parallax">
                     <img src="{{ url_for('static', path='/parallax/bg.png') }}" id="prx_bg" alt="Background">
                     <img src="{{ url_for('static', path='/parallax/moon.png') }}" id="moon" alt="Moon">
-                    <img src="{{ url_for('static', path='/parallax/cloud.png') }}" id="forest" alt="Cloud">
+                    <img src="{{ url_for('static', path='/parallax/cloud.png') }}" id="cloud" alt="Cloud">
                     <img src="{{ url_for('static', path='/parallax/sma2.png') }}" id="rocks" alt="SMA Negeri 2">
                     <img src="{{ url_for('static', path='/parallax/guestStar.png') }}" id="prx_text" alt="Guest Star">
                     <!-- <h1 id="prx_text">SMADAFIESTA</h1> -->
@@ -329,7 +329,7 @@
 
         let bg = document.querySelector('#prx_bg');
         let moon = document.querySelector('#moon');
-        let forest = document.querySelector('#forest');
+        let cloud = document.querySelector('#cloud');
         let rocks = document.querySelector('#rocks');
         let text = document.querySelector('#prx_text');
 
@@ -337,7 +337,7 @@
             let value = window.scrollY;
             bg.style.top = value * 0.5 + 'px';
             moon.style.left = -value * 0.5 + 'px';
-            forest.style.top = -value * 0.15 + 'px';
+            cloud.style.top = -value * 0.15 + 'px';
             rocks.style.top = value * 0.15 + 'px';
             text.style.top = value * 1 + 'px';
         })

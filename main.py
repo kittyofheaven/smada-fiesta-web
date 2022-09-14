@@ -1,3 +1,4 @@
+from imp import reload
 import os
 from re import template
 from dotenv import load_dotenv
@@ -28,6 +29,7 @@ app = FastAPI()
 client = MongoClient(os.getenv('ATLAS_URI'))
 db = client.smadaf
 bandcomp_vote_db = db.bandcomp_vote_database
+band_list_db = db.band_list
 
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -56,7 +58,17 @@ async def exception_handler(request: Request, exc: StarletteHTTPException):
 
 @app.get('/', response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse('index.html', {'request' : request})
+
+    bands = []
+    band_list = band_list_db.find()
+    for row in band_list:
+        bands.append(row)
+
+    # print(bands)
+
+    jinja_var = {'request' : request,
+                'bands' : bands}
+    return templates.TemplateResponse('index.html', jinja_var)
 
 
 # EMAIL SECTION
@@ -136,24 +148,22 @@ async def band_video(band_id : int, Response:Response, request: Request):
 
     # band id dict sama band link dict harus kerja sama jadi harus teliti yyy
 
-    band_id_dict = {1 : 'aaaa',
-                    2 : 'bbbb',
-                    3 : 'smada big bang',
-                    4 : "smada little kids",
-                    5 : "eeee",
-                    6 : "ffff",
-                    7 : "gggg",
-                    8 : "hhhh",
-                    9 : "iiii",
-                    10 : "jjjj",
-                    11 : "kkkk",
-                    12 : "llll",
-                    13 : "mmmm",
-                    14 : "nnnn",
-                    15 : "oooo",}
-
+    band_id_dict = {}
     band_link_dict = {  "smada big bang" : "yQ67XSO5S2Q",
                         "smada little kids" : "XI0q7L_S2mo",}
+
+    band_list = band_list_db.find()
+    x = 0 
+    for row in band_list:
+        x+=1
+
+        video_link = row['link']
+        video_link = video_link.split('youtu.be/')[1]
+        band_id_dict[x] = row['name']
+        band_link_dict[row['name'].lower()] = video_link 
+
+
+    
 
     try :
         band_who= band_id_dict[band_id].lower()
@@ -176,4 +186,4 @@ async def band_video(band_id : int, Response:Response, request: Request):
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app')
+    uvicorn.run('main:app' ,reload=True)

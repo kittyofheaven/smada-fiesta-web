@@ -61,246 +61,26 @@
                 <h2 class="vote-your">Vote your favorite performance!</h2>
                 
                 <div class="vote-row">
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#1</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #1</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=1" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#2</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #2</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=2" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     
+                {% for band in bands %}
                     <div class="card reveal">
                         <div class="card-inner">
                             <div class="vote-box card-face-front">
-                                <h2>SMADA BIG BANG</h2>
+                                <h2>{{band['name']}}</h2>
                             </div>
 
                             <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
+                                <div class="vote-video">
+                                    <img class="band_image" src="{{band['image']}}" alt="{{band['name']}}">
+                                </div>
                                 <div class="inside-vote-box">
-                                    <h2>Smada Big Bang</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=3" type="button">Vote</a>
+                                    <h2>{{band['name']}}</h2>
+                                    <a href="{{ url_for('band_video')}}?band_id={{loop.index}}" type="button">Vote</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>SMADA LITTLE KIDS</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Smada Little Kids</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=4" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#5</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #5</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=5" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#6</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #6</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=6" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#7</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #7</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=7" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#8</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #8</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=8" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#9</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #9</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=9" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#10</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #10</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=10" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#11</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #11</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=11" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#12</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #12</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=12" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#13</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #13</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=13" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#14</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #14</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=14" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card reveal">
-                        <div class="card-inner">
-                            <div class="vote-box card-face-front">
-                                <h2>#15</h2>
-                            </div>
-
-                            <div class="vote-box card-face-back">
-                                <div class="vote-video"></div>
-                                <div class="inside-vote-box">
-                                    <h2>Kompetitor #15</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id=15" type="button">Vote</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                {% endfor %}
 
                 </div>
             </div>

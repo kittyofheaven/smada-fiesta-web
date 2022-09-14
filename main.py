@@ -1,6 +1,4 @@
-from imp import reload
 import os
-from re import template
 from dotenv import load_dotenv
 
 import uvicorn
@@ -186,4 +184,4 @@ async def band_video(band_id : int, Response:Response, request: Request):
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app' ,reload=True)
+    uvicorn.run('main:app')

@@ -204,8 +204,9 @@ nav ul li {
     width: 100%;
     height: auto;
     box-sizing: border-box;
+    margin-top: -10px;
     margin-bottom: -10px;
-    background-color: white;
+    /* background-color: white; */
 }
 .transition-box{
     height: 700px;
@@ -536,6 +537,10 @@ footer p a:hover {
 
     .parallax h1 {
         font-size: 70px;
+    }
+
+    .col-3 {
+        margin-top: -15px;
     }
 
     .col-3 .bandcomp-mobile{

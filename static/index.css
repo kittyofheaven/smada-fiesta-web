@@ -503,7 +503,10 @@ footer p a:hover {
         left: 50%;
         transform: translateX(-50%);
     } */
-
+    .col-2 {
+        margin-top: 250px;
+    }
+    
     .col-2 h2{
         font-size: 30px;
     }

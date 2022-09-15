@@ -33,7 +33,7 @@
                 </div>
                 <div class="parallax">
                     <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2Fbg.png?alt=media&token=b94e7735-be2c-4e32-88f0-a89fac171ef6" id="prx_bg" alt="Background">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2Fmoon.png?alt=media&token=c46ec9b1-9743-45c4-94fd-3f572028b1d5" id="moon" alt="Moon">
+                    <!-- <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2Fmoon.png?alt=media&token=c46ec9b1-9743-45c4-94fd-3f572028b1d5" id="moon" alt="Moon"> -->
                     <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2Fcloud.png?alt=media&token=018c196c-4f29-4ee3-a5bf-e8c3e82469a2" id="cloud" alt="Cloud">
                     <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2Fsman2.png?alt=media&token=2d0c4e3e-8dc4-4f22-bef5-54cb59a195e9" id="rocks" alt="SMA Negeri 2">
                     <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2FguestStar.png?alt=media&token=e1ed35b2-531a-4615-8a6e-b34cdb6387cc" id="prx_text" alt="Guest Star">
@@ -109,7 +109,7 @@
     <script>
 
         let bg = document.querySelector('#prx_bg');
-        let moon = document.querySelector('#moon');
+        // let moon = document.querySelector('#moon');
         let cloud = document.querySelector('#cloud');
         let rocks = document.querySelector('#rocks');
         let text = document.querySelector('#prx_text');
@@ -117,7 +117,7 @@
         window.addEventListener('scroll', function() {
             let value = window.scrollY;
             bg.style.top = value * 0.5 + 'px';
-            moon.style.left = -value * 0.5 + 'px';
+            // moon.style.left = -value * 0.5 + 'px';
             cloud.style.top = -value * 0.15 + 'px';
             rocks.style.top = value * 0.15 + 'px';
             text.style.top = value * 1 + 'px';

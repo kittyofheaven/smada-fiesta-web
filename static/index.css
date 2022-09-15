@@ -167,6 +167,10 @@ nav ul li {
     /* margin-bottom: -100px; */
 }
 
+.parallax #moon {
+    overflow: none;
+}
+
 .title-daf{
     margin: 100px 0 auto -100px;
     vertical-align: middle;

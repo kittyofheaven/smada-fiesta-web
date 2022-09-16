@@ -159,8 +159,14 @@
                 card.classList.toggle('is-flipped');
             });
         });
-
         
+//         resize col-1 function
+        window.addEventListener("resize", function(){
+            let client_width = document.documentElement.clientWidth;
+            p_height = client_width/1192 * 175;
+            p_height = Math.round(p_height-15);
+            parallax.style.height = (p_height.toString()+"vh");
+        });
 
         var menuList = document.getElementById("menu-list");
         // menuList.style.maxHeight = "0px";
@@ -178,7 +184,7 @@
                 
             }
         }
-
+        
         var x = window.matchMedia("(max-width: 768px)")
         togglemenu(x) // Call listener function at run time
         x.addListener(togglemenu) // Attach listener function on state changes

@@ -58,7 +58,7 @@ function parallaxResize(){
     let parallax = document.querySelector('.parallax');
     let client_width = document.documentElement.clientWidth;
     let p_height = client_width/1192 * 175;
-    p_height = Math.round(p_height-5);
+    p_height = Math.round(p_height-15);
     parallax.style.height = (p_height.toString()+"vh");
 }
 parallaxResize()

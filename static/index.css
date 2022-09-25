@@ -114,6 +114,11 @@ nav ul li {
     /* background-size: contain; */
     /* background-repeat: no-repeat; */
 }
+
+.parallaxUpperBox{
+    display: none;
+}
+
 .parallax{
     margin-top: -90px;
     display: flex;
@@ -320,7 +325,7 @@ nav ul li {
 .band_image {
     height: 200px;
     width: auto;
-    object-fit: contain ;
+    object-fit: cover ;
 }
 
 
@@ -598,6 +603,21 @@ footer p a:hover {
     .container{
         background: linear-gradient(#1e1e1e 22%, #ffffff 22%)
     }
+
+    .parallax {
+        margin-top: 0;
+        margin-top: -50px;
+    }
+
+    .parallaxUpperBox{
+        margin-top: -90px;
+        display: block;
+        background-color: #4cc1f0;
+        /* height: 20vh; */
+        width: 100%;
+        z-index: 10000;
+    }
+
 }
 
 @media only screen and (max-width: 500px) {

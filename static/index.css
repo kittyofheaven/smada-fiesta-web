@@ -199,10 +199,43 @@ nav ul li {
 }
 
 .col-2 {
-    height: 800px;
+    height: 100%;
     background: linear-gradient(to bottom, #282d57 0%, #1e1e1e 15%);
     /* margin-bottom: -20px; */
     /* z-index: 10001; */
+}
+
+.col-2 h2 {
+    color: #FFFFFF;
+}
+
+#ticket_image_desktop{
+    display: block;
+    margin: 20px
+}
+
+.ticketOrder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.ticketCard {
+    width: 350px;
+    height: 300px;
+    margin-left: 10px;
+    margin-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+
+.ticketCard h2 {
+    color: #000000;
 }
 
 .transition-box {
@@ -216,7 +249,6 @@ nav ul li {
     font-weight: 700;
     font-size: 36px;
     text-align: center;
-    color: #ffffff; /* nanti diganti */
 }
 
 .col-3{
@@ -352,10 +384,10 @@ nav ul li {
 }
 .inside-vote-box a{
     margin-top: 15px;
-    display: block;
+    display: inline-table;
     width: 144px;
     height: 48px;
-    padding-bottom: 7px;
+    /* padding-bottom: 7px; */
     border-radius: 10px;
     align-items: center;
     text-align: center;
@@ -367,8 +399,14 @@ nav ul li {
     color: #000000;
     background-color: #ffffff;
     transition: 0.5s;
+    box-sizing: border-box;
 
 }
+
+.inside-vote-box a p {
+    margin: auto;
+}
+
 .inside-vote-box a:hover{
     scale: 1.05;
 }
@@ -512,6 +550,12 @@ footer p a:hover {
     .col-2 h2{
         font-size: 30px;
     }
+
+    .ticketCard {
+        width: 262px;
+        height: 225px;
+    }
+
 
     /* .transition-box{
         height: 1000px;

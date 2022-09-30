@@ -179,4 +179,4 @@ async def band_video(band_id : int, Response:Response, request: Request):
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app')
+    uvicorn.run('main:app', port=4444)

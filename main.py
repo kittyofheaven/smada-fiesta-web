@@ -15,11 +15,6 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
 from starlette.exceptions import HTTPException as StarletteHTTPException
-### TODO LIST ###
-# buat link yg dikirim ke pengguna itu jadi dalam bentuk yang pasti
-# html buat email
-# integrasi html email ke app fastapi
-# mekanisme voting
 
 load_dotenv('.env')
 

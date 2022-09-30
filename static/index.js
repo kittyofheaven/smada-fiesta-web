@@ -31,6 +31,80 @@ function reveal(){
     }
 }
 
+// ANIMASI POP UP BOTTOM START
+
+let svg_vvip = document.querySelectorAll('.svg_vvip');
+let svg_vip = document.querySelectorAll('.svg_vip');
+let svg_festival = document.querySelectorAll('.svg_festival');
+
+let ticket_vvip = document.querySelector('.ticket_vvip');
+let ticket_vip = document.querySelector('.ticket_vip');
+let ticket_festival = document.querySelector('.ticket_festival');
+
+let ticket_vvip_active =  false;
+let ticket_vip_active =  false;
+let ticket_festival_active =  false;
+
+// function ticket_deactive(){
+//     ticket_vvip.classList.remove('ticket_active');
+//     ticket_vip.classList.remove('ticket_active');
+//     ticket_festival.classList.remove('ticket_active');
+//     ticket_vip_active = false;
+//     ticket_vvip_active = false;
+//     ticket_festival_active = false;
+// };
+
+// svg_vvip.forEach(vvip =>{
+//     vvip.addEventListener('click', function(){
+//         if(ticket_vvip_active == false){
+//             ticket_deactive();
+//             ticket_vvip.classList.add('ticket_active');
+//             ticket_vvip_active = true;
+//         }
+//         else{ 
+//             ticket_deactive();
+//         }
+//     })});
+
+// svg_vip.forEach(vip =>{
+//     vip.addEventListener('click', function(){
+//         if(ticket_vip_active == false){
+//             ticket_deactive();
+//             ticket_vip.classList.add('ticket_active');
+//             ticket_vip_active = true;
+//         }
+//         else{ 
+//             ticket_deactive();
+//         }
+//     })});
+
+// svg_festival.forEach(festival =>{
+//     festival.addEventListener('click', function(){
+//         if(ticket_festival_active == false){
+//             ticket_deactive();
+//             ticket_festival.classList.add('ticket_active');
+//             ticket_festival_active = true;
+//         }
+//         else{ 
+//             ticket_deactive();
+//         }
+//     })});
+
+// ANIMASI POP UP BOTTOM END
+
+svg_vvip.forEach(vvip =>{
+    vvip.addEventListener('click', function(){
+        location.href="https://wa.me/6281336350868/?text=Saya%20tertarik%20membeli%20tiket%20VVIP%20smadafiesta%202k22";
+    })});
+svg_vip.forEach(vip =>{
+    vip.addEventListener('click', function(){
+        location.href="https://wa.me/6281336350868/?text=Saya%20tertarik%20membeli%20tiket%20VIP%20smadafiesta%202k22";
+    })});
+svg_festival.forEach(festival =>{
+    festival.addEventListener('click', function(){
+        location.href="https://wa.me/6281336350868/?text=Saya%20tertarik%20membeli%20tiket%20Festival%20smadafiesta%202k22";
+    })});
+// SEMENTARA INI
 const card = document.querySelectorAll('.card-inner');
 
 card.forEach(card => {
@@ -88,4 +162,3 @@ function togglemenu(){
 
 var x = window.matchMedia("(max-width: 768px)")
 togglemenu(x) // Call listener function at run time
-x.addListener(togglemenu) // Attach listener function on state changes

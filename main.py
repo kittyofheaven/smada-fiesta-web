@@ -8,8 +8,9 @@ from send_email import send_otp_email_background, send_thanks_email_background
 from pydantic import BaseModel, EmailStr
 from link_generator import link_generator, used_number_delete
 
-from pymongo import MongoClient
-from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated
+import firebase_admin
+from firebase_admin import credentials, firestore
+from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated, db
 
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -19,10 +20,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 load_dotenv('.env')
 
 app = FastAPI()
-client = MongoClient(os.getenv('ATLAS_URI'))
-db = client.smadaf
-bandcomp_vote_db = db.bandcomp_vote_database
-band_list_db = db.band_list
+bandcomp_vote_db = db.collection('vote')
+band_list_db = db.collection("band_list")
 
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -53,9 +52,9 @@ async def exception_handler(request: Request, exc: StarletteHTTPException):
 async def index(request: Request):
 
     bands = []
-    band_list = band_list_db.find()
+    band_list = band_list_db.get()
     for row in band_list:
-        bands.append(row)
+        bands.append(row.to_dict())
 
     # print(bands)
 
@@ -109,8 +108,9 @@ async def verification(otp : str, Response:Response, background_tasks: Backgroun
 
     if searh_bandcomp_otp(otp):
 
-        who = bandcomp_vote_db.find_one({"otp": otp}).get("who")
-        email = bandcomp_vote_db.find_one({"otp": otp}).get("email")
+        key = bandcomp_vote_db.where('otp', '==', otp).get()[0].id
+        who = bandcomp_vote_db.document(key).get().to_dict()['who']
+        email = bandcomp_vote_db.document(key).get().to_dict()['email']
 
 
         name=email.split('@')
@@ -145,10 +145,12 @@ async def band_video(band_id : int, Response:Response, request: Request):
     band_link_dict = {  "smada big bang" : "yQ67XSO5S2Q",
                         "smada little kids" : "XI0q7L_S2mo",}
 
-    band_list = band_list_db.find()
+    band_list = band_list_db.get()
     x = 0 
     for row in band_list:
         x+=1
+
+        row = row.to_dict()
 
         video_link = row['link']
         video_link = video_link.split('youtu.be/')[1]

@@ -39,6 +39,7 @@ li {
 }
 
 .container {
+    margin-top: 100px;
     width: 100%;
     padding-left: 8%;
     padding-right: 8%;
@@ -63,7 +64,7 @@ li {
 }
 
 .form-box{
-    margin: 50px auto 0 auto;
+    margin: auto;
     display: flex;
     width: 500px;
 
@@ -150,7 +151,7 @@ li {
 /* FOOTER */
 footer {
     box-sizing: border-box;
-    position: relative;
+    position: absolute;
     width: 100%;
     /* background-color: #B53CFF; */
     min-height: 100px;
@@ -159,6 +160,7 @@ footer {
     justify-content: center;
     overflow: hidden;
     align-items: center;
+    bottom: 10px;
 }
 
 footer h2 {

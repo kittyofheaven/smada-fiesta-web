@@ -33,10 +33,10 @@
                 </div>
                 <div class="parallaxUpperBox"></div>
                 <div class="parallax">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2Fbg.png?alt=media&token=b94e7735-be2c-4e32-88f0-a89fac171ef6" id="prx_bg" alt="Background">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2Fcloud.png?alt=media&token=018c196c-4f29-4ee3-a5bf-e8c3e82469a2" id="cloud" alt="Cloud">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2Fsman2.png?alt=media&token=2d0c4e3e-8dc4-4f22-bef5-54cb59a195e9" id="rocks" alt="SMA Negeri 2">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/parallax%2FguestStar.png?alt=media&token=e1ed35b2-531a-4615-8a6e-b34cdb6387cc" id="prx_text" alt="Guest Star">
+                    <img src="{{ url_for('static', path='/images/parallax/bg.png') }}" id="prx_bg" alt="Background">
+                    <img src="{{ url_for('static', path='/images/parallax/cloud.png') }}" id="cloud" alt="Cloud">
+                    <img src="{{ url_for('static', path='/images/parallax/sma2.png') }}" id="rocks" alt="SMA Negeri 2">
+                    <img src="{{ url_for('static', path='/images/parallax/guestStar.png') }}" id="prx_text" alt="Guest Star">
                 </div>
             </div>
 
@@ -138,7 +138,7 @@
     
     <footer class="reveal">
         <h2>SMADAFIESTA</h2>
-        <img src="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/logo%2Fviatrix.png?alt=media&token=8f420d2f-62a6-4138-a705-12201193b015" alt="SmadaFiesta" id="footer-viatrix">
+        <img src="{{ url_for('static', path='/images/viatrix.png') }}" alt="SmadaFiesta" id="footer-viatrix">
 
         <ul class="social-icon" id="social-media">
             <li><a href="https://instagram.com/smadaf2k22?igshid=YmMyMTA2M2Y="><ion-icon name="logo-instagram"></ion-icon></a></li>

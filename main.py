@@ -135,15 +135,15 @@ async def verification(otp : str, Response:Response, background_tasks: Backgroun
                                                                 'title': 'Otp Not Found',
                                                                 'message': 'Your otp cant be found in database, try re-vote or contact admin'})
 
-@app.get('/bandcomp/video')
+@app.get('/bandcomp/votepage')
 async def band_video(band_id : int, Response:Response, request: Request):
 
 
     # band id dict sama band link dict harus kerja sama jadi harus teliti yyy
 
     band_id_dict = {}
-    band_link_dict = {  "smada big bang" : "yQ67XSO5S2Q",
-                        "smada little kids" : "XI0q7L_S2mo",}
+    # band_link_dict = {  "smada big bang" : "yQ67XSO5S2Q",
+    #                     "smada little kids" : "XI0q7L_S2mo",}
 
     band_list = band_list_db.get()
     x = 0 
@@ -152,10 +152,10 @@ async def band_video(band_id : int, Response:Response, request: Request):
 
         row = row.to_dict()
 
-        video_link = row['link']
-        video_link = video_link.split('youtu.be/')[1]
+        # video_link = row['link']
+        # video_link = video_link.split('youtu.be/')[1]
         band_id_dict[x] = row['name']
-        band_link_dict[row['name'].lower()] = video_link 
+        # band_link_dict[row['name'].lower()] = video_link 
 
 
     
@@ -172,7 +172,8 @@ async def band_video(band_id : int, Response:Response, request: Request):
         return templates.TemplateResponse('video_template.html', {  'request': request,
                                                                     'title' : band_who,
                                                                     'who' : band_who,
-                                                                    'band_link' : band_link_dict[band_who]})
+                                                                    # 'band_link' : band_link_dict[band_who]
+                                                                    })
     except:
         Response.status_code = status.HTTP_404_NOT_FOUND
         return templates.TemplateResponse('announcement.html', {'request' : request,

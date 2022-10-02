@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmadaFiesta</title>
     <link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/logo%2Flogo%20fw%201b1.png?alt=media&token=0dd88ae8-9c92-4aef-a107-f1fccd9cbc5f">
-    <link href="{{ url_for('static', path='index.css') }}" rel="stylesheet">
+    <link href="https://smadafiesta2k22.com/static/index.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -15,8 +15,8 @@
 
             <div class="col-1 col" id="col-1">
                 <div id="navbar">
-                    <a href="{{ url_for('index') }}" id="nav-logo">
-                        <img src="{{ url_for('static', path='/images/LOGO.png') }}" alt="SmadaFiesta">
+                    <a href="https://smadafiesta2k22.com/" id="nav-logo">
+                        <img src="https://smadafiesta2k22.com/static/images/LOGO.png" alt="SmadaFiesta">
                     </a>
                     <nav>                      
                         <ul id="menu-list">
@@ -33,10 +33,10 @@
                 </div>
                 <div class="parallaxUpperBox"></div>
                 <div class="parallax">
-                    <img src="{{ url_for('static', path='/images/parallax/bg.png') }}" id="prx_bg" alt="Background">
-                    <img src="{{ url_for('static', path='/images/parallax/cloud.png') }}" id="cloud" alt="Cloud">
-                    <img src="{{ url_for('static', path='/images/parallax/sma2.png') }}" id="rocks" alt="SMA Negeri 2">
-                    <img src="{{ url_for('static', path='/images/parallax/guestStar.png') }}" id="prx_text" alt="Guest Star">
+                    <img src="https://smadafiesta2k22.com/static/images/parallax/bg.png" id="prx_bg" alt="Background">
+                    <img src="https://smadafiesta2k22.com/static/images/parallax/cloud.png" id="cloud" alt="Cloud">
+                    <img src="https://smadafiesta2k22.com/static/images/parallax/sma2.png" id="rocks" alt="SMA Negeri 2">
+                    <img src="https://smadafiesta2k22.com/static/images/parallax/guestStar.png" id="prx_text" alt="Guest Star">
                 </div>
             </div>
 
@@ -101,8 +101,8 @@
             </div>
             
             <div class="col-3 col" id="col-3">
-                <img src="{{ url_for('static', path='/images/web-bandcomp-desktop.png') }}" alt="Bandcomp" class="bandcomp-desktop">
-                <img src="{{ url_for('static', path='/images/web-bandcomp-mobile.png') }}" alt="Bandcomp" class="bandcomp-mobile">
+                <img src="https://smadafiesta2k22.com/static/images/web-bandcomp-desktop.png" alt="Bandcomp" class="bandcomp-desktop">
+                <img src="https://smadafiesta2k22.com/static/images/web-bandcomp-mobile.png" alt="Bandcomp" class="bandcomp-mobile">
             </div>
             
             <div class="col-4 col" id="col-4">
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="inside-vote-box">
                                     <h2>{{band['name']}}</h2>
-                                    <a href="{{ url_for('band_video')}}?band_id={{loop.index}}" type="button"><p>Vote</p></a>
+                                    <a href="https://smadafiesta2k22.com/bandcomp/votepage?band_id={{loop.index}}" type="button"><p>Vote</p></a>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
     
     <footer class="reveal">
         <h2>SMADAFIESTA</h2>
-        <img src="{{ url_for('static', path='/images/viatrix.png') }}" alt="SmadaFiesta" id="footer-viatrix">
+        <img src="https://smadafiesta2k22.com/static/images/viatrix-dark.png" alt="SmadaFiesta" id="footer-viatrix">
 
         <ul class="social-icon" id="social-media">
             <li><a href="https://instagram.com/smadaf2k22?igshid=YmMyMTA2M2Y="><ion-icon name="logo-instagram"></ion-icon></a></li>
@@ -146,13 +146,13 @@
             <li><a href="https://twitter.com/smadaf2k22?t=n-5qrV_guJcLAiiUBvTnsQ&s=09"><ion-icon name="logo-twitter"></ion-icon></a></li>
             <li><a href="https://youtube.com/c/SmadaFiesta"><ion-icon name="logo-youtube"></ion-icon></a></li>
         </ul>
-        <p>Copyright &copy; 2022 <a href="{{ url_for('index') }}">SmadaFiesta</a>, Developed by <a href="https://github.com/kittyofheaven">Hazel Handrata</a>, Designed by <a href="https://instagram.com/marvinsavioz">Marvin Savio</a></p>
+        <p>Copyright &copy; 2022 <a href="https://smadafiesta2k22.com/">SmadaFiesta</a>, Developed by <a href="https://github.com/kittyofheaven">Hazel Handrata</a>, Designed by <a href="https://instagram.com/marvinsavioz">Marvin Savio</a></p>
     </footer>
 
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="{{ url_for('static', path='index.js') }}"></script>
+    <script src="https://smadafiesta2k22.com/static/index.js"></script>
 
 </body>
 </html>

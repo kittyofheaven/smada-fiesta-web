@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmadaFiesta: {{ title }}</title>
     <link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/smadafiesta-3df34.appspot.com/o/logo%2Flogo%20fw%201b1.png?alt=media&token=0dd88ae8-9c92-4aef-a107-f1fccd9cbc5f">
-    <link href="{{ url_for('static', path='video_template.css') }}" rel="stylesheet">
+    <link href="https://smadafiesta2k22.com/static/video_template.css" rel="stylesheet">
 </head>
 <body>
     <div id="navbar">
-        <a href="{{ url_for('index') }}" id="nav-logo">
-            <img src="{{ url_for('static', path='/images/LOGO.png') }}" alt="SmadaFiesta">
+        <a href="https://smadafiesta2k22.com/" id="nav-logo">
+            <img src="https://smadafiesta2k22.com/static/images/LOGO.png" alt="SmadaFiesta">
         </a>
     </div>
     <div class="container">
@@ -31,7 +31,7 @@
 
     <footer>
         <h2>SMADAFIESTA</h2>
-        <img src="{{ url_for('static', path='/images/viatrix-dark.png') }}" alt="SmadaFiesta" id="footer-viatrix">
+        <img src="https://smadafiesta2k22.com/static/images/viatrix-dark.png" alt="SmadaFiesta" id="footer-viatrix">
 
         <ul class="social-icon" id="social-media">
             <li><a href="https://instagram.com/smadaf2k22?igshid=YmMyMTA2M2Y="><ion-icon name="logo-instagram"></ion-icon></a></li>
@@ -39,7 +39,7 @@
             <li><a href="https://twitter.com/smadaf2k22?t=n-5qrV_guJcLAiiUBvTnsQ&s=09"><ion-icon name="logo-twitter"></ion-icon></a></li>
             <li><a href="https://youtube.com/c/SmadaFiesta"><ion-icon name="logo-youtube"></ion-icon></a></li>
         </ul>
-        <p>Copyright &copy; 2022 <a href="{{ url_for('index') }}">SmadaFiesta</a>, Developed by <a href="https://github.com/kittyofheaven">Hazel Handrata</a></p>
+        <p>Copyright &copy; 2022 <a href="https://smadafiesta2k22.com/">SmadaFiesta</a>, Developed by <a href="https://github.com/kittyofheaven">Hazel Handrata</a></p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
@@ -49,7 +49,7 @@
         // https://youtu.be/In0nB0ABaUk
 
         const who = "{{ who }}";    
-        const api_link = "{{ url_for('send_email_backgroundtasks') }}";
+        const api_link = "https://smadafiesta2k22.com/bandcomp/send-email";
 
         const email = document.getElementById('email');
         const form = document.getElementById('form-box');

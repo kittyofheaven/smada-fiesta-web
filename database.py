@@ -10,12 +10,12 @@ import pymysql
 mysql_host = "localhost"
 
 bandlist_db = pymysql.connect(  host = mysql_host,
-                                user = os.getenv('MY_SQL_USER'),
-                                password = os.getenv('MY_SQL_PASS'),
+                                user = "root",
+                                password = "Copperkey9?",
                                 database = "smadafie_band_list_database")
 votelist_db = pymysql.connect(  host = mysql_host,
-                                user = os.getenv('MY_SQL_USER'),
-                                password = os.getenv('MY_SQL_PASS'),
+                                user = "root",
+                                password = "Copperkey9?",
                                 database = "smadafie_vote_database")
 
 vote_cursor = votelist_db.cursor(pymysql.cursors.DictCursor)

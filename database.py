@@ -1,89 +1,111 @@
+import email
 import os
+from unittest import result
 from dotenv import load_dotenv
-
-import firebase_admin
-from firebase_admin import credentials, firestore
-
-from pydantic import BaseModel
-from pydantic.networks import EmailStr
-
 load_dotenv('.env')
 
-firebase_key = {
-    "type": "service_account",
-    "project_id": os.getenv('FIREBASE_PROJECT_ID'),
-    "private_key_id": os.getenv('PRIVATE_KEY_ID'),
-    "private_key": os.getenv('FIREBASE_PRIVATE_KEY').replace("\\n", "\n"),
-    "client_email": os.getenv('FIREBASE_CLIENT_EMAIL'),
-    "client_id": os.getenv('CLIENT_ID'),
-    "auth_uri": os.getenv('AUTH_URI'),
-    "token_uri": os.getenv('TOKEN_URI'),
-    "auth_provider_x509_cert_url": os.getenv('AUTH_PROVIDER_X509_CERT_URL'),
-    "client_x509_cert_url": os.getenv('CLIENT_X509_CERT_URL')
-}
+import pymysql
 
-cred = credentials.Certificate(firebase_key)
-firebase_admin.initialize_app(cred)
-db=firestore.client()
 
-bandcomp_vote_db = db.collection('vote')
+mysql_host = "localhost"
 
-class Vote(BaseModel) : 
-    email : EmailStr
-    otp : str  
-    who : str
-    is_verificated : bool
+bandlist_db = pymysql.connect(  host = mysql_host,
+                                user = os.getenv('MY_SQL_USER'),
+                                password = os.getenv('MY_SQL_PASS'),
+                                database = "smadafie_band_list_database")
+votelist_db = pymysql.connect(  host = mysql_host,
+                                user = os.getenv('MY_SQL_USER'),
+                                password = os.getenv('MY_SQL_PASS'),
+                                database = "smadafie_vote_database")
+
+vote_cursor = votelist_db.cursor(pymysql.cursors.DictCursor)
+band_cursor = bandlist_db.cursor(pymysql.cursors.DictCursor)
 
 def bandcomp_vote(email, otp, who):
-    vote = Vote(email=email, otp=otp, who=who, is_verificated=False)
-    bandcomp_vote_db.add(vote.dict())
+    is_verificated = 0
+    insert_query =  """insert into vote(email, otp, who, is_verificated) values("%s", "%s", "%s", "%s")"""\
+                    %(email, otp, who, is_verificated)
+
+    try :
+        vote_cursor.execute(insert_query)
+        votelist_db.commit()
+    except Exception as e :
+        print(e)
 
 def searh_bandcomp_otp(otp): 
     """search for otp if found and is_verificated is False return True else return false"""
-    if bandcomp_vote_db.where("otp", "==", otp).where("is_verificated", "==", False).get():
+    vote_query = """select * from vote where otp = "%s" and is_verificated = 0"""%(otp)
+    vote_cursor.execute(vote_query)
+    result = vote_cursor.fetchall()
+
+    if result:
         return True
     else:
         return False
 
-def already_verificated(otp): 
-    """search for otp and if found return True else return False"""
-    if bandcomp_vote_db.where("otp", "==", otp).where("is_verificated", "==", True).get():
-        return True
-    else:
-        return False
+def already_verificated(otp):
+    """search for otp and if found and is verificate true return True else return False"""
+    vote_query = """select * from vote where otp = "%s" and is_verificated = 1"""%(otp)
+    vote_cursor.execute(vote_query)
+    result = vote_cursor.fetchall()
 
-def check_email(email) :
-    """if email is found in database and is_verificated == True return true else return false"""
-    if bandcomp_vote_db.where("email", "==", email).where("is_verificated", "==", True).get():
+    if result:
         return True
     else:
         return False
 
 def del_other_non_verificated(email):
     """search for email in otp and if found delete all other non-verificated"""
-    docs = bandcomp_vote_db.where("email", "==", email).where("is_verificated", "==", False).get()
-    for doc in docs:
-        key=doc.id
-        bandcomp_vote_db.document(key).delete()
+    vote_query = """delete from vote where email = "%s" and is_verificated = 0"""%(email)
+    vote_cursor.execute(vote_query)
+    votelist_db.commit()
 
 def bandcomp_vote_verificated(otp):
     """search for otp and if found set is_verificated to True"""
-    key = bandcomp_vote_db.where("otp", "==", otp).get()[0].id
-    bandcomp_vote_db.document(key).update({'is_verificated': True})
-    del_other_non_verificated(bandcomp_vote_db.document(key).get().to_dict()['email'])
-    # bandcomp_vote_db.update_one({"otp": otp}, {"$set": {"is_verificated": True}})
-    # del_other_non_verificated(bandcomp_vote_db.find_one({"otp": otp}).get("email"))
+    vote_query = """update vote set is_verificated = 1 where otp = "%s" """%(otp)
+    vote_cursor.execute(vote_query)
+    votelist_db.commit()
+    
+    email_query= """select email from vote where otp = "%s" """%(otp)
+    vote_cursor.execute(email_query)
+    email = vote_cursor.fetchall()
+    email = email[0]['email']
+    del_other_non_verificated(email)
+
+def check_email(email) :
+    """if email is found in database and is_verificated == True return true else return false"""
+    vote_query = """select * from vote where email = "%s" and is_verificated = 1"""%(email)
+    vote_cursor.execute(vote_query)
+    result = vote_cursor.fetchall()
+    if result:
+        return True
+    else:
+        return False
 
 
 
+# otp="123456"
+# who_query = """select who from vote where otp = %s"""%(otp)
+# vote_cursor.execute(who_query)
+# who = vote_cursor.fetchall()
+# who = who[0]['who']
+
+# email_query = """select email from vote where otp = %s"""%(otp)
+# vote_cursor.execute(email_query)
+# email = vote_cursor.fetchall()
+# email = email[0]['email']
 
 
-# del_other_non_verificated("echoind1945@gmail.com")
-# print(searh_bandcomp_otp('123456'))
-# print(already_verificated('123456'))
-# test= Vote(email="hazelhandrata@gmail.com", otp="1234567", who="band1", is_verificated=False)
-# bandcomp_vote_db.add(test.dict())
+# print(who, email)
 
-# docss = db.collection('band_list').get()
-# for doc in docss:
-#     print(doc.to_dict())
+# band_query = "select * from band_list"
+
+# try :
+#     band_cursor.execute(band_query)
+#     result = band_cursor.fetchall()
+#     for row in result :
+#         print(row)
+# except Exception as e :
+#     print(e)
+
+# bandcomp_vote_verificated("ini8390280")

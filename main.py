@@ -8,9 +8,8 @@ from send_email import send_otp_email_background, send_thanks_email_background
 from pydantic import BaseModel, EmailStr
 from link_generator import link_generator, used_number_delete
 
-import firebase_admin
-from firebase_admin import credentials, firestore
-from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated, db
+import pymysql
+from database import check_email, already_verificated, bandcomp_vote, searh_bandcomp_otp, bandcomp_vote_verificated, bandlist_db, votelist_db, band_cursor, vote_cursor
 
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -20,8 +19,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 load_dotenv('.env')
 
 app = FastAPI()
-bandcomp_vote_db = db.collection('vote')
-band_list_db = db.collection("band_list")
+v_cursor = votelist_db.cursor()
+b_cursor = bandlist_db.cursor()
 
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -52,9 +51,13 @@ async def exception_handler(request: Request, exc: StarletteHTTPException):
 async def index(request: Request):
 
     bands = []
-    band_list = band_list_db.get()
+
+    band_query = "select * from band_list"
+    band_cursor.execute(band_query)
+    band_list = band_cursor.fetchall()
+    
     for row in band_list:
-        bands.append(row.to_dict())
+        bands.append(row)
 
     # print(bands)
 
@@ -106,17 +109,27 @@ def send_email_backgroundtasks(background_tasks: BackgroundTasks,Response:Respon
 @app.get('/bandcomp/verification')
 async def verification(otp : str, Response:Response, background_tasks: BackgroundTasks, request: Request):
 
+
     if searh_bandcomp_otp(otp):
 
-        key = bandcomp_vote_db.where('otp', '==', otp).get()[0].id
-        who = bandcomp_vote_db.document(key).get().to_dict()['who']
-        email = bandcomp_vote_db.document(key).get().to_dict()['email']
+        
 
+        who_query = """select who from vote where otp = '%s'"""%(otp)
+        vote_cursor.execute(who_query)
+        who = vote_cursor.fetchall()
+        who = who[0]
+        who = who ['who']
+        
+        email_query = """select email from vote where otp = '%s'"""%(otp)
+        vote_cursor.execute(email_query)
+        email = vote_cursor.fetchall()
+        email = email[0]['email']
 
         name=email.split('@')
         name=name[0].capitalize()
 
         send_thanks_email_background(background_tasks, email , who)
+
 
         bandcomp_vote_verificated(otp)
         used_number_delete(int(otp[3:]))
@@ -145,12 +158,16 @@ async def band_video(band_id : int, Response:Response, request: Request):
     # band_link_dict = {  "smada big bang" : "yQ67XSO5S2Q",
     #                     "smada little kids" : "XI0q7L_S2mo",}
 
-    band_list = band_list_db.get()
+    band_query = "select * from band_list"
+    band_cursor.execute(band_query)
+    band_list = band_cursor.fetchall()
+
+    # band_list = band_list_db.get()
     x = 0 
     for row in band_list:
         x+=1
 
-        row = row.to_dict()
+        row = row
 
         # video_link = row['link']
         # video_link = video_link.split('youtu.be/')[1]
